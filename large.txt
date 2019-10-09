@@ -1,0 +1,1000 @@
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:09 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 612
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  8 00:10 .
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:19 ..
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:17 0.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:16 1.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 335738 Oct  5 21:18 NP Project 1 Spec.pdf
+drwxrwxrwx 1 raymond210129 raymond210129    512 Oct  5 21:22 bin
+-rwxrwxrwx 1 raymond210129 raymond210129  35064 Oct  5 21:35 cat
+-rwxrwxrwx 1 raymond210129 raymond210129   1942 Oct  5 21:19 commands.zip
+-rwxrwxrwx 1 raymond210129 raymond210129    131 Oct  5 21:19 desktop.ini
+-rwxrwxrwx 1 raymond210129 raymond210129   1337 Oct  8 00:09 large.txt
+-rwxrwxrwx 1 raymond210129 raymond210129      0 Oct  8 00:10 large2.txt
+-rwxrwxrwx 1 raymond210129 raymond210129 133792 Oct  5 21:36 ls
+-rwxrwxrwx 1 raymond210129 raymond210129     28 Oct 13  2011 noop.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  62616 Oct  8 00:01 npshell
+-rwxrwxrwx 1 raymond210129 raymond210129   8852 Oct  7 23:52 npshell.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    729 Oct 13  2011 number.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    858 Oct 13  2011 removetag.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129    940 Oct 13  2011 removetag0.cpp
+-rwxrwxrwx 1 raymond210129 raymond210129  13408 Oct  7 18:09 test
+-rwxrwxrwx 1 raymond210129 raymond210129      5 Oct  7 21:12 test.cpp
+total 608
