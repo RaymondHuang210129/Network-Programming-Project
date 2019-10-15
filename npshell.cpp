@@ -33,7 +33,6 @@ int main(int argc, char** argv, char** envp) {
 	clearenv();
 	setenv("PATH", "bin:.", 1);
 	signal(SIGCHLD, signalHandler);
-	int totalCmdCounter = 0;
 	while (1) {
 		int promptCmdCounter = 0;
 		string oFile = "";
@@ -77,7 +76,6 @@ int main(int argc, char** argv, char** envp) {
 					vector<string> tmpVec(1, splitedCmd[i]);
 					ExecCmd execCmd = {splitedCmd[i], 0, false, tmpVec};
 					cmdList.push_back(execCmd);
-					totalCmdCounter++;
 					promptCmdCounter++;
 				}	
 			}
@@ -148,10 +146,10 @@ int main(int argc, char** argv, char** envp) {
 					execVect[cmdList[i].args.size()] = NULL;
 					execvp(execVect[0], execVect);
 					if (errno == 2) {
-						cout << "Unknown command: [" << execVect[0] <<"]." << endl;
+						cerr << "Unknown command: [" << execVect[0] <<"]." << endl;
 					}
 					else {
-						cout << "exec error: " << errno << endl;
+						cerr << "exec error: " << errno << endl;
 					}
 				}
 				exit(0);

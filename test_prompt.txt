@@ -1,0 +1,3 @@
+cat large.txt |3
+cat large.txt | number |1
+cat
