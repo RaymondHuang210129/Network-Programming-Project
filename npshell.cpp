@@ -158,15 +158,13 @@ int main(int argc, char** argv, char** envp) {
 				if (cmdList[i].pipeToCmd + i < promptCmdCounter) { /* note: process does not hang till next prompt */
 					pidWaitList.push_back(cpid);
 				}
-			}
-		}
-		/* note: parent close all pipes that do not connect to future commands */
-		for (int i = 0; i < promptCmdCounter; i++) {
-			if (createdPipesToEachCmdVec[i][0]) {
-				close(createdPipesToEachCmdVec[i][0]);
-			}
-			if (createdPipesToEachCmdVec[i][1]) {
-				close(createdPipesToEachCmdVec[i][1]);
+				/* note: parent close all pipes that do not connect to future commands */
+				if (createdPipesToEachCmdVec[i][0]) {
+					close(createdPipesToEachCmdVec[i][0]);
+				}
+				if (createdPipesToEachCmdVec[i][1]) {
+					close(createdPipesToEachCmdVec[i][1]);
+				}
 			}
 		}
 		for (int i = 0; i < pidWaitList.size(); i++) {
