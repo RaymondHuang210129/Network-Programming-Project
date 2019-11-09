@@ -6,6 +6,7 @@ using namespace std;
 static int statglb_semSigArgID;
 static int statglb_shmSigArgID;
 static int statglb_shmInfoID;
+static int statglb_userIndex;
 
 struct ExecCmd {
 	string cmd;
@@ -14,23 +15,137 @@ struct ExecCmd {
 	vector<string> args;
 };
 
+/* grave the zombies */
 void SIGCHLDHandlerShell(int sigNum) {
 	int status;
 	while(waitpid(-1, &status, WNOHANG) > 0) {}
 	return;
 }
 
-void SIGUSR1HandlerShell(int sigNum) { /* note: deal with messages */
+/* receive process signals */
+void SIGUSR1HandlerShell(int sigNum) { 
 	SIGUSR1Info* sigArg = (SIGUSR1Info*)shmat(statglb_shmSigArgID, NULL, 0);
-	if (sigArg[0].signalMode == LOGIN) {
+	//cout << "message: " << sigArg[0].message << "sender index: " << sigArg[0].senderIndex << endl;
+	if (sigArg[0].signalMode == LOGIN) { 
+		if (sigArg[0].senderIndex == statglb_userIndex) { 
+			/* note: show welcome message if receive login signal from itself */
+			cout << "****************************************" << endl;
+			cout << "** Welcome to the information server. **" << endl;
+			cout << "****************************************" << endl;
+		}
+		/* note: show login notification */
 		UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0); 
 		cout << "*** User '" << userInfo[sigArg[0].senderIndex].userName 
-			 << "' entered from " << inet_ntoa(userInfo[sigArg[0].senderIndex].endpointAddr.sin_addr) 
+			 << "' entered from " 
+			 << inet_ntoa(userInfo[sigArg[0].senderIndex].endpointAddr.sin_addr) 
 			 << ":" << userInfo[sigArg[0].senderIndex].endpointAddr.sin_port << ". ***" << endl;
+		shmdt(userInfo);
+	} else if (sigArg[0].signalMode == LOGOUT) {
+		/* note: show notification */
+		cout << "*** User '" << sigArg[0].message << "' left. ***" << endl;
+	} else if (sigArg[0].signalMode == RENAME) {
+		/* note: show notification */
+		UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0); 
+		cout << "*** User from " 
+			 << inet_ntoa(userInfo[sigArg[0].senderIndex].endpointAddr.sin_addr) 
+			 << ":" << userInfo[sigArg[0].senderIndex].endpointAddr.sin_port 
+			 << " is named '" << userInfo[sigArg[0].senderIndex].userName 
+			 << "'. ***" << endl;
 		shmdt(userInfo);
 	}
 	shmdt(sigArg);
 	p_sem(statglb_semSigArgID, 1);
+}
+
+void login(sockaddr_in clientAddr) {
+	/* section: register the user into share memory */
+	UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0); 
+	for(int i = 0; i < 30; i++) { /* write user profile to an empty slot */
+		if (userInfo[i].used == false) {
+			userInfo[i].used = true;
+			strcpy(userInfo[i].userName, "(no name)");
+			userInfo[i].endpointAddr = clientAddr;
+			userInfo[i].processID = getpid();
+			statglb_userIndex = i;
+			break;
+		}
+		else if (i == 29) {
+			cerr << "unable to create new user." << endl;
+			exit(-1);
+		}
+	}
+	/* section: count the existed user */
+	int numUser = 0;
+	for(int i = 0; i < 30; i++) { 
+		if (userInfo[i].used == true) {
+			numUser++;
+		}
+	}
+	/* section: release sem with numUser and put args to shm */
+	v_sem(statglb_semSigArgID, numUser);
+	SIGUSR1Info* sigArg = (SIGUSR1Info*)shmat(statglb_shmSigArgID, NULL, 0);
+	sigArg[0].castMode = BROADCAST;
+	sigArg[0].signalMode = LOGIN;
+	sigArg[0].senderIndex = statglb_userIndex;
+	shmdt(sigArg);
+	/* section: signal others to read shm */
+	for(int i = 0; i < 30; i++) {
+		if(userInfo[i].used == true) {
+			kill(userInfo[i].processID, SIGUSR1);
+		}
+	}
+	shmdt(userInfo);
+}
+
+void who() {
+	UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
+	cout << "<ID>\t<nickname>\t<IP:port>\t<indicate me>" << endl;
+	for(int i = 0; i < 30; i++) {
+		if (userInfo[i].used == true) {
+			cout << i + 1 << "\t" << userInfo[i].userName 
+				 << "\t" << inet_ntoa(userInfo[i].endpointAddr.sin_addr) 
+				 << ":" << userInfo[i].endpointAddr.sin_port;
+			if (userInfo[i].processID == getpid()) {
+				cout << "\t<-me" << endl;
+			} else {
+				cout << endl;
+			}
+		}
+	}
+	shmdt(userInfo);
+}
+
+void rename(string name) {
+	UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
+	int userIndex;
+	for(int i = 0; i < 30; i++) {
+		if (strcmp(userInfo[i].userName, name.c_str()) == 0) {
+			cout << "*** User '" << name <<"' already exists. ***" << endl;
+			return;
+		}
+	}
+	strcpy(userInfo[statglb_userIndex].userName, name.c_str());
+	/* section: count the existed user */
+	int numUser = 0;
+	for(int i = 0; i < 30; i++) { 
+		if (userInfo[i].used == true) {
+			numUser++;
+		}
+	}
+	/* section: release sem with numUser and put args to shm */
+	v_sem(statglb_semSigArgID, numUser);
+	SIGUSR1Info* sigArg = (SIGUSR1Info*)shmat(statglb_shmSigArgID, NULL, 0);
+	sigArg[0].castMode = BROADCAST;
+	sigArg[0].signalMode = RENAME;
+	sigArg[0].senderIndex = statglb_userIndex;
+	shmdt(sigArg);
+	/* section: signal others to read shm */
+	for(int i = 0; i < 30; i++) {
+		if(userInfo[i].used == true) {
+			kill(userInfo[i].processID, SIGUSR1);
+		}
+	}
+	shmdt(userInfo);
 }
 
 int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockaddr_in clientAddr) {
@@ -47,59 +162,19 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockadd
 	setenv("PATH", "bin:.", 1);
 	signal(SIGCHLD, SIGCHLDHandlerShell);
 	signal(SIGUSR1, SIGUSR1HandlerShell);
-	/* section: register the user into share memory */
-	int userIndex;
-	UserInfo* userInfo = (UserInfo*)shmat(shmInfoID, NULL, 0); 
-	for(int i = 0; i < 30; i++) { /* write user profile to an empty slot */
-		if (userInfo[i].used == false) {
-			userInfo[i].used = true;
-			strcpy(userInfo[i].userName, "(no name)");
-			userInfo[i].endpointAddr = clientAddr;
-			userInfo[i].processID = getpid();
-			userIndex = i;
-			break;
-		}
-		else if (i == 29) {
-			cerr << "unable to create new user." << endl;
-			exit(-1);
-		}
-	}
-	shmdt(userInfo);
-	/* note: count the existed user */
-	userInfo = (UserInfo*)shmat(shmInfoID, NULL, 0);
-	int numUser = 0;
-	for(int i = 0; i < 30; i++) { 
-		if (userInfo[i].used == true) {
-			cout << "used: " << i << endl;
-			numUser++;
-		}
-	}
-	/* note: release sem with numUser and put args to shm */
-	v_sem(semSigArgID, numUser);
-	SIGUSR1Info* sigArg = (SIGUSR1Info*)shmat(shmSigArgID, NULL, 0);
-	sigArg[0].castMode = BROADCAST;
-	sigArg[0].signalMode = LOGIN;
-	sigArg[0].senderIndex = userIndex;
-	shmdt(sigArg);
-	/* signal others to read shm */
-	for(int i = 0; i < 30; i++) {
-		if(userInfo[i].used == true) {
-			kill(userInfo[i].processID, SIGUSR1);
-		}
-	}
-	shmdt(userInfo);
+	signal(SIGINT, SIG_IGN);
+	/* note: register & signaling process */
+	login(clientAddr);
 	/* section: start to accept command */
 	while (1) {
 		int promptCmdCounter = 0;
 		string oFile = "";
 		cout << "% " << flush;
 		if (!getline(cin, rawCmd)) {exit(0);}
-		if (rawCmd == "exit") {exit(0);} /* todo: EOF*/
 		istringstream iss(rawCmd);
 		vector<string> splitedCmd(istream_iterator<string>{iss}, 
 								  istream_iterator<string>());
 		/* section: parse */
-		if (splitedCmd.size() == 1 && splitedCmd[0] == "exit") {exit(0);}
 		for (int i = 0, argFlag = 0; i < splitedCmd.size(); i++) {
 			if (splitedCmd[i] == "|") { /* note: regular pipe */
 				cmdList[cmdList.size() - 1].pipeToCmd = 1;
@@ -141,6 +216,17 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockadd
 			setenv(splitedCmd[1].c_str(), splitedCmd[2].c_str(), 1);
 			cmdList.erase(cmdList.begin());
 			continue;
+		}
+		if (splitedCmd.size() == 1 && splitedCmd[0] == "who") {
+			who();
+			continue;
+		}
+		if (splitedCmd.size() == 2 && splitedCmd[0] == "name") {
+			rename(splitedCmd[1]);
+			continue;
+		}
+		if (splitedCmd.size() == 1 && splitedCmd[0] == "exit") {
+			exit(0);
 		}
 		vector<int> tmpPair(2, 0);
 		if (assignedEntriesToEachCmdVec.size() < promptCmdCounter) {

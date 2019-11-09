@@ -15,17 +15,35 @@ static int statglb_semSigArgID;
 void SIGCHLDHandlerMain(int signum) {
 	int status;
 	pid_t cpid;
-	key_t shmInfoKey = (key_t)SHMINFOKEY;
-	int statglb_shmInfoID = shmget(shmInfoKey, sizeof(UserInfo) * 30, 0644|IPC_CREAT);
-	while(cpid = waitpid(-1, &status, WNOHANG) > 0) {
-		UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0); 
-		for (int i = 0; i < 30; i++) {
-			if (userInfo[i].processID == cpid) {
-				userInfo[i].used = false;
-				strcpy(userInfo[i].userName, "(no name)");
-				userInfo[i].processID = 0;
-				userInfo[i].endpointAddr = NULL;
-				break;
+	while((cpid = waitpid(-1, &status, WNOHANG)) > 0) {
+		/* section: count the existed user except logout one and clean up logout user*/
+		UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
+		int numUser = 0;
+		char userName[25];
+		for(int i = 0; i < 30; i++) { 
+			if (userInfo[i].used == true) {
+				if (userInfo[i].processID == cpid) {
+					strcpy(userName, userInfo[i].userName);
+					userInfo[i].used = false;
+					strcpy(userInfo[i].userName, "(no name)");
+					userInfo[i].processID = 0;
+				}
+				else {
+					numUser++;
+				}
+			}
+		}
+		/* section: put args to shm */
+		v_sem(statglb_semSigArgID, numUser);
+		SIGUSR1Info* sigArg = (SIGUSR1Info*)shmat(statglb_shmSigArgID, NULL, 0);
+		sigArg[0].castMode = BROADCAST;
+		sigArg[0].signalMode = LOGOUT;
+		strcpy(sigArg[0].message, userName); /* note: username is put in message */
+		shmdt(sigArg);
+		/* section: signal others to read shm */
+		for(int i = 0; i < 30; i++) {
+			if (userInfo[i].used == true && userInfo[i].processID != cpid) {
+				kill(userInfo[i].processID, SIGUSR1);
 			}
 		}
 		shmdt(userInfo);
@@ -35,10 +53,16 @@ void SIGCHLDHandlerMain(int signum) {
 
 void SIGINTHandlerMain(int signum) {
 	int status;
-	cout << "clean up shm and sem" << endl;
-	del_sem(statglb_semSigArgID);
+	signal(SIGCHLD, SIG_DFL);
+	UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
+	for (int i = 0; i < 30; i++) {
+		if (userInfo[i].used == true) {
+			kill(userInfo[i].processID, SIGKILL);
+		}
+	}
 	shmctl(statglb_shmInfoID, IPC_RMID, 0);
 	shmctl(statglb_shmSigArgID, IPC_RMID, 0);
+	del_sem(statglb_semSigArgID);
 	exit(0);
 }
 
