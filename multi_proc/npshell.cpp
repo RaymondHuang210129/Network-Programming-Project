@@ -1,16 +1,11 @@
-#include <cstdlib>
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <sstream>
-#include <vector>
-#include <iterator>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/wait.h>
-#include <sys/types.h>
+
+#include "header.hpp"
 
 using namespace std;
+
+static int statglb_semSigArgID;
+static int statglb_shmSigArgID;
+static int statglb_shmInfoID;
 
 struct ExecCmd {
 	string cmd;
@@ -25,20 +20,75 @@ void SIGCHLDHandlerShell(int sigNum) {
 	return;
 }
 
-void SIGINTHandlerShell(int sigNum) {
-	int status;
-	/* todo: clean up share memory and terminate */
+void SIGUSR1HandlerShell(int sigNum) { /* note: deal with messages */
+	SIGUSR1Info* sigArg = (SIGUSR1Info*)shmat(statglb_shmSigArgID, NULL, 0);
+	if (sigArg[0].signalMode == LOGIN) {
+		UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0); 
+		cout << "*** User '" << userInfo[sigArg[0].senderIndex].userName 
+			 << "' entered from " << inet_ntoa(userInfo[sigArg[0].senderIndex].endpointAddr.sin_addr) 
+			 << ":" << userInfo[sigArg[0].senderIndex].endpointAddr.sin_port << ". ***" << endl;
+		shmdt(userInfo);
+	}
+	shmdt(sigArg);
+	p_sem(statglb_semSigArgID, 1);
 }
 
-int npshell() {
+int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockaddr_in clientAddr) {
+	/* note: assign values to static global */
+	statglb_semSigArgID = semSigArgID;
+	statglb_shmSigArgID = shmSigArgID;
+	statglb_shmInfoID = shmInfoID;
+
 	string rawCmd;
 	vector<ExecCmd> cmdList;
-	vector<vector<int>> createdPipesToEachCmdVec; /* note: register each command's created rPipe (and another end) */
+	vector<vector<int>> createdPipesToEachCmdVec; /* note: register each command's created read Pipe (and another end) */
 	vector<vector<int>> assignedEntriesToEachCmdVec; /* note: in and out direction will be assigned and then can be closed by main proccess later */
 	clearenv();
 	setenv("PATH", "bin:.", 1);
 	signal(SIGCHLD, SIGCHLDHandlerShell);
-	signal(SIGINT, SIGINTHandlerShell);
+	signal(SIGUSR1, SIGUSR1HandlerShell);
+	/* section: register the user into share memory */
+	int userIndex;
+	UserInfo* userInfo = (UserInfo*)shmat(shmInfoID, NULL, 0); 
+	for(int i = 0; i < 30; i++) { /* write user profile to an empty slot */
+		if (userInfo[i].used == false) {
+			userInfo[i].used = true;
+			strcpy(userInfo[i].userName, "(no name)");
+			userInfo[i].endpointAddr = clientAddr;
+			userInfo[i].processID = getpid();
+			userIndex = i;
+			break;
+		}
+		else if (i == 29) {
+			cerr << "unable to create new user." << endl;
+			exit(-1);
+		}
+	}
+	shmdt(userInfo);
+	/* note: count the existed user */
+	userInfo = (UserInfo*)shmat(shmInfoID, NULL, 0);
+	int numUser = 0;
+	for(int i = 0; i < 30; i++) { 
+		if (userInfo[i].used == true) {
+			cout << "used: " << i << endl;
+			numUser++;
+		}
+	}
+	/* note: release sem with numUser and put args to shm */
+	v_sem(semSigArgID, numUser);
+	SIGUSR1Info* sigArg = (SIGUSR1Info*)shmat(shmSigArgID, NULL, 0);
+	sigArg[0].castMode = BROADCAST;
+	sigArg[0].signalMode = LOGIN;
+	sigArg[0].senderIndex = userIndex;
+	shmdt(sigArg);
+	/* signal others to read shm */
+	for(int i = 0; i < 30; i++) {
+		if(userInfo[i].used == true) {
+			kill(userInfo[i].processID, SIGUSR1);
+		}
+	}
+	shmdt(userInfo);
+	/* section: start to accept command */
 	while (1) {
 		int promptCmdCounter = 0;
 		string oFile = "";

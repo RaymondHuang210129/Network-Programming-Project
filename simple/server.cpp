@@ -79,7 +79,7 @@ int main(int argc, char** argv, char** envp) {
 	int masterSock, slaveSock;
 	socklen_t clientAddrLen = sizeof((struct sockaddr*) &clientAddr);
 	signal(SIGCHLD, signalHandlerMain);
-	char* protocol = "tcp";
+	char protocol[4] = "tcp";
 	masterSock = passiveSock(port, protocol, QLEN);
 	while(1) {
 		slaveSock = accept(masterSock, (struct sockaddr*)&clientAddr, &clientAddrLen);

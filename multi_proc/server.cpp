@@ -1,27 +1,45 @@
-#include <cstdlib>
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <sstream>
-#include <vector>
-#include <iterator>
-#include <unistd.h>
-#include <fcntl.h>
-#include <netdb.h>
-#include <sys/wait.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include "npshell.cpp"
+
+#include "header.hpp"
 
 #define QLEN 5
+#define SHMINFOKEY 54089588
+#define SHMSIGARGKEY 37063333
+#define SEMSIGARGKEY 46804706
 
 using namespace std;
 
-void signalHandlerMain(int signum) {
+static int statglb_shmInfoID;
+static int statglb_shmSigArgID;
+static int statglb_semSigArgID;
+
+void SIGCHLDHandlerMain(int signum) {
 	int status;
-	while(waitpid(-1, &status, WNOHANG) > 0) {}
+	pid_t cpid;
+	key_t shmInfoKey = (key_t)SHMINFOKEY;
+	int statglb_shmInfoID = shmget(shmInfoKey, sizeof(UserInfo) * 30, 0644|IPC_CREAT);
+	while(cpid = waitpid(-1, &status, WNOHANG) > 0) {
+		UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0); 
+		for (int i = 0; i < 30; i++) {
+			if (userInfo[i].processID == cpid) {
+				userInfo[i].used = false;
+				strcpy(userInfo[i].userName, "(no name)");
+				userInfo[i].processID = 0;
+				userInfo[i].endpointAddr = NULL;
+				break;
+			}
+		}
+		shmdt(userInfo);
+	}
 	return;
+}
+
+void SIGINTHandlerMain(int signum) {
+	int status;
+	cout << "clean up shm and sem" << endl;
+	del_sem(statglb_semSigArgID);
+	shmctl(statglb_shmInfoID, IPC_RMID, 0);
+	shmctl(statglb_shmSigArgID, IPC_RMID, 0);
+	exit(0);
 }
 
 int passiveSock(char* port, char* protocol, int qlen) {
@@ -66,9 +84,6 @@ int passiveSock(char* port, char* protocol, int qlen) {
 	return sockDescriptor;
 }
 
-//passivesock(port, "tcp", qlen);
-//passivesock(port, "udp", 0);
-
 int main(int argc, char** argv, char** envp) {
 	if (argc != 2) {
 		cerr << "wrong argument" << endl;
@@ -78,9 +93,27 @@ int main(int argc, char** argv, char** envp) {
 	struct sockaddr_in clientAddr;
 	int masterSock, slaveSock;
 	socklen_t clientAddrLen = sizeof((struct sockaddr*) &clientAddr);
-	signal(SIGCHLD, signalHandlerMain);
-	char* protocol = "tcp";
-	masterSock = passiveSock(port, protocol, QLEN);
+	char protocol[4] = "tcp";
+	masterSock = passiveSock(port, protocol, QLEN); 
+	/* note: set signal handler */
+	signal(SIGCHLD, SIGCHLDHandlerMain);
+	signal(SIGINT, SIGINTHandlerMain);
+	/* note: create share memory for 30 users' info */
+	statglb_shmInfoID = shmget((key_t)SHMINFOKEY, sizeof(UserInfo) * 30, 0644|IPC_CREAT);
+	if (statglb_shmInfoID == -1) {cerr << "statglb_shmInfoID error " << errno << endl; exit(-1);}
+	UserInfo* tmpUserInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
+	memset(tmpUserInfo, 0, sizeof(UserInfo) * 30);
+	shmdt(tmpUserInfo);
+	/* note: create share memory for signal parameter */
+	statglb_shmSigArgID = shmget((key_t)SHMSIGARGKEY, sizeof(SIGUSR1Info), 0644|IPC_CREAT);
+	if (statglb_shmSigArgID == -1) {cerr << "statglb_shmSigArgID error " << errno << endl; exit(-1);}
+	SIGUSR1Info* tmpSIGUSR1Info = (SIGUSR1Info*)shmat(statglb_shmSigArgID, NULL, 0);
+	memset(tmpSIGUSR1Info, 0, sizeof(SIGUSR1Info));
+	shmdt(tmpSIGUSR1Info);
+	/* note: create semaphore to garuntee the ShmSigArg RW correctness */
+	statglb_semSigArgID = init_sem((key_t)SEMSIGARGKEY, 0);	
+	if (statglb_semSigArgID == -1) {cerr << "statglb_semSigArgID error " << errno << endl; exit(-1);}
+	/* note: start to wait for connections */
 	while(1) {
 		slaveSock = accept(masterSock, (struct sockaddr*)&clientAddr, &clientAddrLen);
 		if (slaveSock < 0) {
@@ -99,7 +132,7 @@ int main(int argc, char** argv, char** envp) {
 			dup2(slaveSock, STDOUT_FILENO);
 			dup2(slaveSock, STDERR_FILENO);
 			close(slaveSock);
-			npshell();
+			npshell(getppid(), statglb_shmInfoID, statglb_shmSigArgID, statglb_semSigArgID, clientAddr);
 			exit(0);
 		} else { /* note: parent */
 			close(slaveSock);
