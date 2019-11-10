@@ -52,6 +52,17 @@ void SIGUSR1HandlerShell(int sigNum) {
 			 << " is named '" << userInfo[sigArg[0].senderIndex].userName 
 			 << "'. ***" << endl;
 		shmdt(userInfo);
+	} else if (sigArg[0].signalMode == YELL) {
+		/* note: show notification */
+		UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
+		cout << "*** " << userInfo[sigArg[0].senderIndex].userName 
+			 << " yelled ***: " << sigArg[0].message << endl;
+		shmdt(userInfo);
+	} else if (sigArg[0].signalMode == TELL) {
+		UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
+		cout << "*** " << userInfo[sigArg[0].senderIndex].userName 
+			 << " told you *** : " << sigArg[0].message << endl;
+		shmdt(userInfo);
 	}
 	shmdt(sigArg);
 	p_sem(statglb_semSigArgID, 1);
@@ -91,7 +102,10 @@ void login(sockaddr_in clientAddr) {
 	/* section: signal others to read shm */
 	for(int i = 0; i < 30; i++) {
 		if(userInfo[i].used == true) {
-			kill(userInfo[i].processID, SIGUSR1);
+			if (kill(userInfo[i].processID, SIGUSR1) == -1 && errno == ESRCH) {
+				/* a terminated process is signaled, should use 1 signal to prevent deadlock */
+				p_sem(statglb_semSigArgID, 1);
+			}
 		}
 	}
 	shmdt(userInfo);
@@ -117,7 +131,6 @@ void who() {
 
 void rename(string name) {
 	UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
-	int userIndex;
 	for(int i = 0; i < 30; i++) {
 		if (strcmp(userInfo[i].userName, name.c_str()) == 0) {
 			cout << "*** User '" << name <<"' already exists. ***" << endl;
@@ -127,7 +140,7 @@ void rename(string name) {
 	strcpy(userInfo[statglb_userIndex].userName, name.c_str());
 	/* section: count the existed user */
 	int numUser = 0;
-	for(int i = 0; i < 30; i++) { 
+	for (int i = 0; i < 30; i++) { 
 		if (userInfo[i].used == true) {
 			numUser++;
 		}
@@ -140,12 +153,72 @@ void rename(string name) {
 	sigArg[0].senderIndex = statglb_userIndex;
 	shmdt(sigArg);
 	/* section: signal others to read shm */
-	for(int i = 0; i < 30; i++) {
-		if(userInfo[i].used == true) {
-			kill(userInfo[i].processID, SIGUSR1);
+	for (int i = 0; i < 30; i++) {
+		if (userInfo[i].used == true) {
+			if (kill(userInfo[i].processID, SIGUSR1) == -1 && errno == ESRCH) {
+				/* a terminated process is signaled, should use 1 signal to prevent deadlock */
+				p_sem(statglb_semSigArgID, 1);
+			}
 		}
 	}
 	shmdt(userInfo);
+}
+
+void yell(vector<string> splitedCmd) {
+	string message = splitedCmd[1];
+	for (int i = 2; i < splitedCmd.size(); i++) {
+		message = message + " " + splitedCmd[i];
+	}
+	UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
+	int numUser = 0;
+	for (int i = 0; i < 30; i++) {
+		if (userInfo[i].used == true) {
+			numUser++;
+		}
+	}
+	v_sem(statglb_semSigArgID, numUser);
+	SIGUSR1Info* sigArg = (SIGUSR1Info*)shmat(statglb_shmSigArgID, NULL, 0);
+	sigArg[0].castMode = BROADCAST;
+	sigArg[0].signalMode = YELL;
+	sigArg[0].senderIndex = statglb_userIndex;
+	strcpy(sigArg[0].message, message.c_str());
+	shmdt(sigArg);
+	/* section: signal others to read shm */
+	for (int i = 0; i < 30; i++) {
+		if (userInfo[i].used == true) {
+			if (kill(userInfo[i].processID, SIGUSR1) == -1 && errno == ESRCH) {
+				/* a terminated process is signaled, should use 1 signal to prevent deadlock */
+				p_sem(statglb_semSigArgID, 1);
+			}
+		}
+	}
+	shmdt(userInfo);
+}
+
+void tell(vector<string> splitedCmd) {
+	string message = splitedCmd[2];
+	for (int i = 3; i < splitedCmd.size(); i++) {
+		message = message + " " + splitedCmd[i];
+	}
+	v_sem(statglb_semSigArgID, 1);
+	SIGUSR1Info* sigArg = (SIGUSR1Info*)shmat(statglb_shmSigArgID, NULL, 0);
+	sigArg[0].castMode = UNICAST;
+	sigArg[0].signalMode = TELL;
+	sigArg[0].senderIndex = statglb_userIndex;
+	strcpy(sigArg[0].message, message.c_str());
+	shmdt(sigArg);
+	UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
+	if (stoi(splitedCmd[1]) >= 1 && stoi(splitedCmd[1]) <= 30 && userInfo[stoi(splitedCmd[1]) - 1].used == true) {
+		if (kill(userInfo[stoi(splitedCmd[1]) - 1].processID, SIGUSR1) == -1 && errno == ESRCH) {
+			/* a terminated process is signaled, should use 1 signal to prevent deadlock */
+			p_sem(statglb_semSigArgID, 1);
+		}
+	} else {
+		cout << "*** Error: user #" << splitedCmd[1] << " does not exist yet. ***" << endl;
+		p_sem(statglb_semSigArgID, 1); /* note: undo */
+	}
+	shmdt(userInfo);
+	return;
 }
 
 int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockaddr_in clientAddr) {
@@ -219,10 +292,22 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockadd
 		}
 		if (splitedCmd.size() == 1 && splitedCmd[0] == "who") {
 			who();
+			cmdList.erase(cmdList.begin());
 			continue;
 		}
 		if (splitedCmd.size() == 2 && splitedCmd[0] == "name") {
 			rename(splitedCmd[1]);
+			cmdList.erase(cmdList.begin());
+			continue;
+		}
+		if (splitedCmd.size() >= 2 && splitedCmd[0] == "yell") {
+			yell(splitedCmd);
+			cmdList.erase(cmdList.begin());
+			continue;
+		}
+		if (splitedCmd.size() >= 3 && splitedCmd[0] == "tell") {
+			tell(splitedCmd);
+			cmdList.erase(cmdList.begin());
 			continue;
 		}
 		if (splitedCmd.size() == 1 && splitedCmd[0] == "exit") {

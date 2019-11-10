@@ -98,6 +98,8 @@ int passiveSock(char* port, char* protocol, int qlen) {
 		cerr << "cannot create socket due to errno " << errno << endl;
 		exit(-1);
 	}
+	bool bReuseaddr = true;
+	if (setsockopt(sockDescriptor, SOL_SOCKET, SO_REUSEADDR, (const char*)&bReuseaddr, sizeof(bool)));
 	if (bind(sockDescriptor, (struct sockaddr*)&endpointAddr, sizeof(endpointAddr)) < 0) {
 		cerr << "cannot bind to port " << port << " " << errno << endl;
 		exit(-1);
