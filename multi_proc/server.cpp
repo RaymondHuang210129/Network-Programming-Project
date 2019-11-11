@@ -1,7 +1,7 @@
 
 #include "header.hpp"
 
-#define QLEN 5
+#define QLEN 30
 #define SHMINFOKEY 54089588
 #define SHMSIGARGKEY 37063333
 #define SEMSIGARGKEY 46804706
@@ -19,6 +19,7 @@ void SIGCHLDHandlerMain(int signum) {
 		/* section: count the existed user except logout one and clean up logout user*/
 		UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
 		int numUser = 0;
+		int terminatedUserIndex;
 		char userName[25];
 		for(int i = 0; i < 30; i++) { 
 			if (userInfo[i].used == true) {
@@ -27,6 +28,7 @@ void SIGCHLDHandlerMain(int signum) {
 					userInfo[i].used = false;
 					strcpy(userInfo[i].userName, "(no name)");
 					userInfo[i].processID = 0;
+					terminatedUserIndex = i;
 				}
 				else {
 					numUser++;
@@ -36,9 +38,10 @@ void SIGCHLDHandlerMain(int signum) {
 		/* section: put args to shm */
 		v_sem(statglb_semSigArgID, numUser);
 		SIGUSR1Info* sigArg = (SIGUSR1Info*)shmat(statglb_shmSigArgID, NULL, 0);
-		sigArg[0].castMode = BROADCAST;
-		sigArg[0].signalMode = LOGOUT;
-		strcpy(sigArg[0].message, userName); /* note: username is put in message */
+		sigArg->castMode = BROADCAST;
+		sigArg->signalMode = LOGOUT;
+		sigArg->senderIndex = terminatedUserIndex;
+		strcpy(sigArg->message, userName); /* note: username is put in message */
 		shmdt(sigArg);
 		/* section: signal others to read shm */
 		for(int i = 0; i < 30; i++) {

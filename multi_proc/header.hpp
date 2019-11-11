@@ -14,16 +14,22 @@
 #include <sys/shm.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
+#include <sys/stat.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
 #define UNICAST 1000
 #define BROADCAST 1001
+
 #define LOGIN 2000
 #define LOGOUT 2001
 #define RENAME 2002
 #define YELL 2003
 #define TELL 2004
+#define PIPESEND 2005
+#define PIPERECV 2006
+
+#define PIPETONULL 3000
 
 using namespace std;
 
@@ -39,6 +45,7 @@ struct SIGUSR1Info {
 	int signalMode = LOGIN;
 	char message[1030];
 	int senderIndex = 0;
+	int receiverIndex = 0;
 };
 
 union semun {
