@@ -48,6 +48,12 @@ struct SIGUSR1Info {
 	int receiverIndex = 0;
 };
 
+struct NamepipeProcessBind {
+	bool used;
+	short senderIndex;
+	short receiverIndex;
+};
+
 union semun {
 	int val;    /* Value for SETVAL */
 	struct semid_ds *buf;    /* Buffer for IPC_STAT, IPC_SET */
@@ -56,7 +62,7 @@ union semun {
                                            (Linux-specific) */
 };
 
-int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockaddr_in clientAddr);
+int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, int statglb_shmPipeProcBindID, sockaddr_in clientAddr);
 
 int init_sem(key_t key, int semVal);
 

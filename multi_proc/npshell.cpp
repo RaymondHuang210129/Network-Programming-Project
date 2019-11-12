@@ -6,27 +6,40 @@ using namespace std;
 static int statglb_semSigArgID;
 static int statglb_shmSigArgID;
 static int statglb_shmInfoID;
+static int statglb_shmPipeProcBindID;
 static int statglb_userIndex;
-static int statglb_pipeInFd[30];
+static int statglb_pipeInFd[30]; /* note: store fd value of user pipe that is created by senders */
 
 struct ExecCmd {
 	string cmd;
 	int pipeToCmd;
 	bool errRedir;
 	vector<string> args;
+	int userPipeOut = 0;
+	int userPipeIn = 0;
 };
 
 /* grave the zombies */
 void SIGCHLDHandlerShell(int sigNum) {
 	int status;
-	while(waitpid(-1, &status, WNOHANG) > 0) {}
+	pid_t cpid;
+	while((cpid = waitpid(-1, &status, WNOHANG)) > 0) {
+		/* section: remove name pipe when the receiver process terminate */
+		NamepipeProcessBind* namepipeProcessBind = (NamepipeProcessBind*)shmat(statglb_shmPipeProcBindID, NULL, 0);
+		if (namepipeProcessBind[cpid].used == true) {
+			string userPipeName = "./user_pipe/" + to_string(namepipeProcessBind[cpid].senderIndex) + "to" + to_string(namepipeProcessBind[cpid].receiverIndex);
+			int result = remove(userPipeName.c_str());
+			if (result == -1) {cout << "delete user pipe error: " << errno << endl;}
+			namepipeProcessBind[cpid].used = false;
+		}
+		shmdt(namepipeProcessBind);
+	}
 	return;
 }
 
 /* receive process signals */
 void SIGUSR1HandlerShell(int sigNum) { 
 	SIGUSR1Info* sigArg = (SIGUSR1Info*)shmat(statglb_shmSigArgID, NULL, 0);
-	//cout << "message: " << sigArg->message << "sender index: " << sigArg->senderIndex << endl;
 	if (sigArg->signalMode == LOGIN) { 
 		if (sigArg->senderIndex == statglb_userIndex) { 
 			/* note: show welcome message if receive login signal from itself */
@@ -82,7 +95,7 @@ void SIGUSR1HandlerShell(int sigNum) {
 			string userPipeName = "./user_pipe/" + to_string(sigArg->senderIndex) + "to" + to_string(statglb_userIndex);
 			statglb_pipeInFd[sigArg->senderIndex] = open(userPipeName.c_str(), O_RDONLY);
 			if (statglb_pipeInFd[sigArg->senderIndex] == -1) {
-				cout << "error:" << errno << endl;
+				cout << "error open user pipe:" << errno << endl;
 			}
 		}
 		shmdt(userInfo);
@@ -321,11 +334,12 @@ void pipeIn(vector<string> splitedCmd, int writerIndex) {
 	shmdt(userInfo);
 }
 
-int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockaddr_in clientAddr) {
+int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, int shmPipeProcBindID, sockaddr_in clientAddr) {
 	/* note: assign values to static global */
 	statglb_semSigArgID = semSigArgID;
 	statglb_shmSigArgID = shmSigArgID;
 	statglb_shmInfoID = shmInfoID;
+	statglb_shmPipeProcBindID = shmPipeProcBindID;
 	memset(statglb_pipeInFd, 0, sizeof(int) * 30);
 
 	string rawCmd;
@@ -343,8 +357,8 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockadd
 	while (1) {
 		int promptCmdCounter = 0;
 		string oFile = "";
-		int userPipeOut = 0;
-		int userPipeIn = 0;
+		//int userPipeOut = 0;
+		//int userPipeIn = 0;
 		cout << "% " << flush;
 		if (!getline(cin, rawCmd)) {
 			exit(0);
@@ -381,14 +395,16 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockadd
 					splitedCmd[i].substr(0, 1) == ">" && 
 					stoi(splitedCmd[i].substr(1)) >= 1 && 
 					stoi(splitedCmd[i].substr(1)) <= 30) { /* note: cross-users pipe */
-				userPipeOut = stoi(splitedCmd[i].substr(1));
+				//userPipeOut = stoi(splitedCmd[i].substr(1));
+				cmdList[cmdList.size() - 1].userPipeOut = stoi(splitedCmd[i].substr(1));
+				argFlag = 0;
 			}
 			else if (splitedCmd[i].length() > 1 && 
 					splitedCmd[i].substr(0, 1) == "<" && 
 					stoi(splitedCmd[i].substr(1)) >= 1 && 
 					stoi(splitedCmd[i].substr(1)) <= 30) { /* note: cross-users pipe */
-				userPipeIn = stoi(splitedCmd[i].substr(1));
-				//cout << "find read cross user pipe from " << userPipeIn << endl;
+				//userPipeIn = stoi(splitedCmd[i].substr(1));
+				cmdList[cmdList.size() - 1].userPipeIn = stoi(splitedCmd[i].substr(1));
 				argFlag = 0;
 			}
 			else { /* note: command */
@@ -398,7 +414,7 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockadd
 				else { /* program */
 					argFlag = 1;
 					vector<string> tmpVec(1, splitedCmd[i]);
-					ExecCmd execCmd = {splitedCmd[i], 0, false, tmpVec};
+					ExecCmd execCmd = {splitedCmd[i], 0, false, tmpVec, 0, 0};
 					cmdList.push_back(execCmd);
 					promptCmdCounter++;
 				}	
@@ -432,7 +448,6 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockadd
 		if (splitedCmd.size() == 1 && splitedCmd[0] == "exit") {
 			exit(0);
 		}
-		//cout << "test" << endl;
 		vector<int> tmpPair(2, 0);
 		if (assignedEntriesToEachCmdVec.size() < promptCmdCounter) {
 			assignedEntriesToEachCmdVec.resize(promptCmdCounter, tmpPair);
@@ -457,51 +472,54 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockadd
 				assignedEntriesToEachCmdVec[i][1] = createdPipesToEachCmdVec[cmdList[i].pipeToCmd + i][1];
 			}
 		}
-		if (userPipeIn) {
+		/* section: check whether need to attach user pipe to pipe in */
+		for (int i = 0; i < promptCmdCounter; i++) {
 			UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
-			if (userInfo[userPipeIn - 1].used == false) { /* user not exist */
-				cout << "*** Error: user #" << userPipeIn << " does not exist yet. ***" << endl;
-				userPipeIn = PIPETONULL;
-			} else {
-				if (statglb_pipeInFd[userPipeIn - 1] == 0) { /* no pipe exist */
-					cout << "*** Error: the pipe #" << userPipeIn 
-						 << "->#" << statglb_userIndex + 1 << " does not exist yet. ***" << endl;
-					userPipeIn = PIPETONULL;
+			if (cmdList[i].userPipeIn != 0) {
+				if (userInfo[cmdList[i].userPipeIn - 1].used == false) { /* user not exist */
+					cout << "*** Error: user #" << cmdList[i].userPipeIn << " does not exist yet. ***" << endl;
+					cmdList[i].userPipeIn = PIPETONULL;
+				} else {
+					if (statglb_pipeInFd[cmdList[i].userPipeIn - 1] == 0) { /* no pipe exist */
+						cout << "*** Error: the pipe #" << cmdList[i].userPipeIn 
+							 << "->#" << statglb_userIndex + 1 << " does not exist yet. ***" << endl;
+						cmdList[i].userPipeIn = PIPETONULL;
+					}
 				}
 			}
 			shmdt(userInfo);
 		}
-		string userPipeName = "";
-		if (userPipeOut) { /* if the last command should output to user pipe */
+		/* section: check whether need to create user pipe to pipe out */
+		for (int i = 0; i < promptCmdCounter; i++) {
 			UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
-			if (userInfo[userPipeOut - 1].used == false) { /* user not exist: pipe to null */
-				cout << "*** Error: user #" << userPipeOut << " does not exist yet. ***" << endl;
-				userPipeOut = PIPETONULL;
-			} else {
-				userPipeName = "./user_pipe/" + to_string(statglb_userIndex) + "to" + to_string(userPipeOut - 1);
-				int result = mkfifo(userPipeName.c_str(), S_IRWXU|S_IRWXG|S_IRWXO);
-				if (result == -1 && errno == EEXIST) { /* user pipe already exist: pipe to null */
-					cout << "*** Error: the pipe #" << statglb_userIndex + 1 
-						 << "->#" << userPipeOut << " already exist. ***" << endl;
-					userPipeOut = PIPETONULL;
-				} else if (result == -1 && errno != EEXIST) {
-					cout << "mkfifo error " << errno << endl;
+			if (cmdList[i].userPipeOut != 0) {
+				if (userInfo[cmdList[i].userPipeOut - 1].used == false) { /* user not exist: pipe to null */
+					cout << "*** Error: user #" << cmdList[i].userPipeOut << " does not exist yet. ***" << endl;
+					cmdList[i].userPipeOut = PIPETONULL;
+				} else {
+					string userPipeName = "./user_pipe/" + to_string(statglb_userIndex) + "to" + to_string(cmdList[i].userPipeOut - 1);
+					int result = mkfifo(userPipeName.c_str(), S_IRWXU|S_IRWXG|S_IRWXO);
+					if (result == -1 && errno == EEXIST) { /* user pipe already exist: pipe to null */
+						cout << "*** Error: the pipe #" << statglb_userIndex + 1 
+							 << "->#" << cmdList[i].userPipeOut << " already exist. ***" << endl;
+						cmdList[i].userPipeOut = PIPETONULL;
+					} else if (result == -1 && errno != EEXIST) {
+						cout << "mkfifo error " << errno << endl;
+					}
 				}
 			}
 			shmdt(userInfo);
 		}
-		vector<int> pidWaitList;
+		vector<int> pidWaitList; /* note: some processes should be waited before printing % */
 		/* section: fork */
 		for (int i = 0; i < promptCmdCounter; i++) {
 			pid_t cpid;
 			while((cpid = fork()) == -1) {}; /* note: busy waiting if process capacity exhausted */
 			if (cpid == 0) { /* note: child */
-				//cout << "fork test child" << endl;
 				if (assignedEntriesToEachCmdVec[i][0]) { /* note: stdin redirect */
 					close(STDIN_FILENO);
 					dup2(assignedEntriesToEachCmdVec[i][0], STDIN_FILENO);
 				}
-				//cout << "fork test child 2" << endl;
 				if (assignedEntriesToEachCmdVec[i][1]) { /* note: stdout redirect */
 					close(STDOUT_FILENO);
 					dup2(assignedEntriesToEachCmdVec[i][1], STDOUT_FILENO);
@@ -510,42 +528,44 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockadd
 						dup2(assignedEntriesToEachCmdVec[i][1], STDERR_FILENO);
 					}
 				}
-				//cout << "fork test child 3" << endl;
-				if (i == 0) { /* note: the first command */
-					if (userPipeIn) { /* note: user attempt to receive pipe from others */
-						if (userPipeIn == PIPETONULL) { /* note: invalid attempt */
-							int nullFd = open("/dev/null", O_RDONLY);
-							close(STDIN_FILENO);
-							dup2(nullFd, STDIN_FILENO);
-							close(nullFd);
-						} else { /* note: valid attempt */
-							pipeIn(splitedCmd, userPipeIn - 1);
-							close(STDIN_FILENO);
-							dup2(statglb_pipeInFd[userPipeIn - 1], STDIN_FILENO);
-							close(statglb_pipeInFd[userPipeIn - 1]);
-							statglb_pipeInFd[userPipeIn - 1] = 0;
-						}
-					}
+				/* section: attaching input user pipe */
+				if (cmdList[i].userPipeIn == PIPETONULL) { /* note: invalid attempt to attach user pipe */
+					int nullFd = open("/dev/null", O_RDONLY);
+					close(STDIN_FILENO);
+					dup2(nullFd, STDIN_FILENO);
+					close(nullFd);
+				} else if (cmdList[i].userPipeIn > 0) { /* note: valid attempt to attach user pipe */
+					pipeIn(splitedCmd, cmdList[i].userPipeIn - 1);
+					close(STDIN_FILENO);
+					dup2(statglb_pipeInFd[cmdList[i].userPipeIn - 1], STDIN_FILENO);
+					close(statglb_pipeInFd[cmdList[i].userPipeIn - 1]);
+					statglb_pipeInFd[cmdList[i].userPipeIn - 1] = 0;
+					NamepipeProcessBind* namepipeProcessBind = (NamepipeProcessBind*)shmat(statglb_shmPipeProcBindID, NULL, 0);
+					namepipeProcessBind[getpid()].used = true;
+					namepipeProcessBind[getpid()].senderIndex = cmdList[i].userPipeIn - 1;
+					namepipeProcessBind[getpid()].receiverIndex = statglb_userIndex;
+					shmdt(namepipeProcessBind);
+				}
+				/* section: attaching output user pipe */
+				if (cmdList[i].userPipeOut == PIPETONULL) { /* note: invalid attempt to attach user pipe */
+					int nullFd = open("/dev/null", O_WRONLY);
+					close(STDOUT_FILENO);
+					dup2(nullFd, STDOUT_FILENO);
+					close(nullFd);
+				} else if (cmdList[i].userPipeOut > 0) { /* note: valid attempt to attach user pipe */
+					pipeOut(splitedCmd, cmdList[i].userPipeOut - 1);
+					string userPipeName = "./user_pipe/" + to_string(statglb_userIndex) + "to" + to_string(cmdList[i].userPipeOut - 1);
+					int pipeOutFd = open(userPipeName.c_str(), O_WRONLY);
+					close(STDOUT_FILENO);
+					dup2(pipeOutFd, STDOUT_FILENO);
+					close(pipeOutFd);
 				}
 				if (i == promptCmdCounter - 1) { /* note: the last command */
-					if (oFile != "") { /* if the last command should output to file */
+					if (oFile != "") { /* note: if the last command should output to file */
 						int fd = open(oFile.c_str(), O_RDWR|O_CREAT|O_TRUNC, S_IRWXU|S_IRWXG|S_IRWXO);
 						close(STDOUT_FILENO);
 						dup2(fd, STDOUT_FILENO);
-					} else if (userPipeOut) { /* note: user attempt to send pipe to others */
-						if (userPipeOut == PIPETONULL) { /* note: invalid attempt */
-							int nullFd = open("/dev/null", O_WRONLY);
-							close(STDOUT_FILENO);
-							dup2(nullFd, STDOUT_FILENO);
-							close(nullFd);
-						} else { /* note: valid attempt */
-							pipeOut(splitedCmd, userPipeOut - 1);
-							int pipeOutFd = open(userPipeName.c_str(), O_WRONLY);
-							close(STDOUT_FILENO);
-							dup2(pipeOutFd, STDOUT_FILENO);
-							close(pipeOutFd);
-						}
-					}
+					} 
 				}
 				for (int j = 3; j < getdtablesize(); j++) {close(j);} /* note: close all unused pipe entries */
 				if (cmdList[i].cmd == "printenv") { 
@@ -568,20 +588,12 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockadd
 				exit(0);
 			}
 			else { /* note: parent */
-				//cout << "fork test parent" << endl;
 				/* section: put commands that no need to hang to the wait list */
-				if (i == promptCmdCounter - 1) { /* note: last command */
-					if ((userPipeOut == 0 || userPipeOut == PIPETONULL) && cmdList[i].pipeToCmd + i < promptCmdCounter) {
-						/* note: no pipeOut and hop pipe */
-						pidWaitList.push_back(cpid);
-					}
-				} else {
-					if (cmdList[i].pipeToCmd + i < promptCmdCounter) {
-						/* note: no hop pipe */
-						pidWaitList.push_back(cpid);
-					}
+				if ((cmdList[i].userPipeOut == 0 || cmdList[i].userPipeOut == PIPETONULL) &&
+					cmdList[i].pipeToCmd + i < promptCmdCounter) {
+					/* note: no pipeOut and hop pipe */
+					pidWaitList.push_back(cpid);
 				}
-				//cout << "fork test parent 2" << endl;
 				/* section: parent close all pipes that do not connect to future commands */
 				if (createdPipesToEachCmdVec[i][0]) {
 					close(createdPipesToEachCmdVec[i][0]);
@@ -591,14 +603,25 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, sockadd
 				}
 			}
 		}
-		//cout << "fork test parent 3" << endl;
+		/* section: wait for processes in waitList */
 		for (int i = 0; i < pidWaitList.size(); i++) {
 			int status;
-			waitpid(pidWaitList[i], &status, 0);
+			pid_t cpid = waitpid(pidWaitList[i], &status, 0);
+			/* section: remove name pipe when the receiver process terminate */
+			NamepipeProcessBind* namepipeProcessBind = (NamepipeProcessBind*)shmat(statglb_shmPipeProcBindID, NULL, 0);
+			if (namepipeProcessBind[cpid].used == true) {
+				string userPipeName = "./user_pipe/" + to_string(namepipeProcessBind[cpid].senderIndex) + "to" + to_string(namepipeProcessBind[cpid].receiverIndex);
+				int result = remove(userPipeName.c_str());
+				if (result == -1) {cout << "delete user pipe error: " << errno << endl;}
+				namepipeProcessBind[cpid].used = false;
+			}
+			shmdt(namepipeProcessBind);
 		}
-		if (userPipeIn != 0 && userPipeIn != PIPETONULL) { /* note: parent process should close the pipe that has been received by child process */
-			close(statglb_pipeInFd[userPipeIn - 1]);
-			statglb_pipeInFd[userPipeIn - 1] = 0;
+		for (int i = 0; i < promptCmdCounter; i++) {
+			if (cmdList[i].userPipeIn != 0 && cmdList[i].userPipeIn != PIPETONULL) { /* note: parent process should close the pipe that has been received by child process */
+				close(statglb_pipeInFd[cmdList[i].userPipeIn - 1]);
+				statglb_pipeInFd[cmdList[i].userPipeIn - 1] = 0;
+			}
 		}
 		cmdList.erase(cmdList.begin(), cmdList.begin() + promptCmdCounter);
 		createdPipesToEachCmdVec.erase(createdPipesToEachCmdVec.begin(), createdPipesToEachCmdVec.begin() + promptCmdCounter);

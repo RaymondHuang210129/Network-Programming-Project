@@ -5,11 +5,13 @@
 #define SHMINFOKEY 54089588
 #define SHMSIGARGKEY 37063333
 #define SEMSIGARGKEY 46804706
+#define SHMPIPEPROCBINDKEY 87654321
 
 using namespace std;
 
 static int statglb_shmInfoID;
 static int statglb_shmSigArgID;
+static int statglb_shmPipeProcBindID;
 static int statglb_semSigArgID;
 
 void SIGCHLDHandlerMain(int signum) {
@@ -139,6 +141,12 @@ int main(int argc, char** argv, char** envp) {
 	SIGUSR1Info* tmpSIGUSR1Info = (SIGUSR1Info*)shmat(statglb_shmSigArgID, NULL, 0);
 	memset(tmpSIGUSR1Info, 0, sizeof(SIGUSR1Info));
 	shmdt(tmpSIGUSR1Info);
+	/* note: create share memory for process id and it's input user pipe */
+	statglb_shmPipeProcBindID = shmget((key_t)SHMPIPEPROCBINDKEY, sizeof(NamepipeProcessBind) * 32768, 0644|IPC_CREAT);
+	if (statglb_shmPipeProcBindID == -1) {cerr << "statglb_shmPipeProcBindID error " << errno << endl; exit(-1);}
+	NamepipeProcessBind* tmpsNamepipeProcessBind = (NamepipeProcessBind*)shmat(statglb_shmPipeProcBindID, NULL, 0);
+	memset(tmpsNamepipeProcessBind, 0, sizeof(NamepipeProcessBind) * 32768);
+	shmdt(tmpsNamepipeProcessBind);
 	/* note: create semaphore to garuntee the ShmSigArg RW correctness */
 	statglb_semSigArgID = init_sem((key_t)SEMSIGARGKEY, 0);	
 	if (statglb_semSigArgID == -1) {cerr << "statglb_semSigArgID error " << errno << endl; exit(-1);}
@@ -161,7 +169,7 @@ int main(int argc, char** argv, char** envp) {
 			dup2(slaveSock, STDOUT_FILENO);
 			dup2(slaveSock, STDERR_FILENO);
 			close(slaveSock);
-			npshell(getppid(), statglb_shmInfoID, statglb_shmSigArgID, statglb_semSigArgID, clientAddr);
+			npshell(getppid(), statglb_shmInfoID, statglb_shmSigArgID, statglb_semSigArgID, statglb_shmPipeProcBindID, clientAddr);
 			exit(0);
 		} else { /* note: parent */
 			close(slaveSock);
