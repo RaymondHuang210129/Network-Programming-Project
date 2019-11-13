@@ -24,7 +24,7 @@ void SIGCHLDHandlerShell(int sigNum) {
 	int status;
 	pid_t cpid;
 	while((cpid = waitpid(-1, &status, WNOHANG)) > 0) {
-		/* section: remove name pipe when the receiver process terminate */
+		/* section: remove name pipe when the receiver process used the pipe and terminated */
 		NamepipeProcessBind* namepipeProcessBind = (NamepipeProcessBind*)shmat(statglb_shmPipeProcBindID, NULL, 0);
 		if (namepipeProcessBind[cpid].used == true) {
 			string userPipeName = "./user_pipe/" + to_string(namepipeProcessBind[cpid].senderIndex) + "to" + to_string(namepipeProcessBind[cpid].receiverIndex);
@@ -57,12 +57,19 @@ void SIGUSR1HandlerShell(int sigNum) {
 	} else if (sigArg->signalMode == LOGOUT) {
 		/* note: show notification */
 		cout << "*** User '" << sigArg->message << "' left. ***" << endl;
-		/* section: close the input pipe that produced by terminated user */
 		UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
+		/* section: close and delete the input pipe that produced by terminated user */
 		if (statglb_pipeInFd[sigArg->senderIndex] != 0) {
 			close(statglb_pipeInFd[sigArg->senderIndex]);
 			statglb_pipeInFd[sigArg->senderIndex] = 0;
+			string userPipeName = "./user_pipe/" + to_string(sigArg->senderIndex) + "to" + to_string(statglb_userIndex);
+			int result = remove(userPipeName.c_str());
+			if (result == -1) {cout << "delete user pipe error: " << errno << endl;}
 		}
+		/* section: delete the output pipe that outputs to terminated user */
+		string userPipeName = "./user_pipe/" + to_string(statglb_userIndex) + "to" + to_string(sigArg->senderIndex);
+		int result = remove(userPipeName.c_str());
+		if (result == -1 && errno != ENOENT) {cout << "delete user pipe error: " << errno << endl;}
 		shmdt(userInfo);
 	} else if (sigArg->signalMode == RENAME) {
 		/* note: show notification */
@@ -609,7 +616,7 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, int shm
 			pid_t cpid = waitpid(pidWaitList[i], &status, 0);
 			/* section: remove name pipe when the receiver process terminate */
 			NamepipeProcessBind* namepipeProcessBind = (NamepipeProcessBind*)shmat(statglb_shmPipeProcBindID, NULL, 0);
-			if (namepipeProcessBind[cpid].used == true) {
+			if (cpid > 0 && namepipeProcessBind[cpid].used == true) {
 				string userPipeName = "./user_pipe/" + to_string(namepipeProcessBind[cpid].senderIndex) + "to" + to_string(namepipeProcessBind[cpid].receiverIndex);
 				int result = remove(userPipeName.c_str());
 				if (result == -1) {cout << "delete user pipe error: " << errno << endl;}

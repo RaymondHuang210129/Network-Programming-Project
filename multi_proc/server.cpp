@@ -26,6 +26,7 @@ void SIGCHLDHandlerMain(int signum) {
 		for(int i = 0; i < 30; i++) { 
 			if (userInfo[i].used == true) {
 				if (userInfo[i].processID == cpid) {
+					/* section: clear the user's data mark as unuse */
 					strcpy(userName, userInfo[i].userName);
 					userInfo[i].used = false;
 					strcpy(userInfo[i].userName, "(no name)");
@@ -33,6 +34,7 @@ void SIGCHLDHandlerMain(int signum) {
 					terminatedUserIndex = i;
 				}
 				else {
+					/* section: count the users that should be notified */
 					numUser++;
 				}
 			}
@@ -103,8 +105,10 @@ int passiveSock(char* port, char* protocol, int qlen) {
 		cerr << "cannot create socket due to errno " << errno << endl;
 		exit(-1);
 	}
-	bool bReuseaddr = true;
-	if (setsockopt(sockDescriptor, SOL_SOCKET, SO_REUSEADDR, (const char*)&bReuseaddr, sizeof(bool)));
+	int bReuseaddr = 1;
+	if (setsockopt(sockDescriptor, SOL_SOCKET, SO_REUSEADDR, &bReuseaddr, sizeof(int)) == -1) {
+		cerr << "cannot setsockopt " << errno << endl;
+	}
 	if (bind(sockDescriptor, (struct sockaddr*)&endpointAddr, sizeof(endpointAddr)) < 0) {
 		cerr << "cannot bind to port " << port << " " << errno << endl;
 		exit(-1);
@@ -141,7 +145,7 @@ int main(int argc, char** argv, char** envp) {
 	SIGUSR1Info* tmpSIGUSR1Info = (SIGUSR1Info*)shmat(statglb_shmSigArgID, NULL, 0);
 	memset(tmpSIGUSR1Info, 0, sizeof(SIGUSR1Info));
 	shmdt(tmpSIGUSR1Info);
-	/* note: create share memory for process id and it's input user pipe */
+	/* note: create share memory for process id and it's input user pipe, index is pid */
 	statglb_shmPipeProcBindID = shmget((key_t)SHMPIPEPROCBINDKEY, sizeof(NamepipeProcessBind) * 32768, 0644|IPC_CREAT);
 	if (statglb_shmPipeProcBindID == -1) {cerr << "statglb_shmPipeProcBindID error " << errno << endl; exit(-1);}
 	NamepipeProcessBind* tmpsNamepipeProcessBind = (NamepipeProcessBind*)shmat(statglb_shmPipeProcBindID, NULL, 0);
