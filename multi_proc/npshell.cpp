@@ -402,7 +402,6 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, int shm
 					splitedCmd[i].substr(0, 1) == ">" && 
 					stoi(splitedCmd[i].substr(1)) >= 1 && 
 					stoi(splitedCmd[i].substr(1)) <= 30) { /* note: cross-users pipe */
-				//userPipeOut = stoi(splitedCmd[i].substr(1));
 				cmdList[cmdList.size() - 1].userPipeOut = stoi(splitedCmd[i].substr(1));
 				argFlag = 0;
 			}
@@ -410,7 +409,6 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, int shm
 					splitedCmd[i].substr(0, 1) == "<" && 
 					stoi(splitedCmd[i].substr(1)) >= 1 && 
 					stoi(splitedCmd[i].substr(1)) <= 30) { /* note: cross-users pipe */
-				//userPipeIn = stoi(splitedCmd[i].substr(1));
 				cmdList[cmdList.size() - 1].userPipeIn = stoi(splitedCmd[i].substr(1));
 				argFlag = 0;
 			}
