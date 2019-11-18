@@ -460,23 +460,6 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, int shm
 		if (createdPipesToEachCmdVec.size() < promptCmdCounter) {
 			createdPipesToEachCmdVec.resize(promptCmdCounter, tmpPair);
 		}
-		/* section: create new pipe or use existed pipe */
-		for (int i = 0; i < promptCmdCounter; i++) {
-			/* check whether exists a pipe that should connect to rPipe */
-			if (createdPipesToEachCmdVec[i][0] != 0) { /* note: exists a pipe connect to this command */
-				assignedEntriesToEachCmdVec[i][0] = createdPipesToEachCmdVec[i][0];
-			}
-			/* check whether need a pipe to send*/
-			if (cmdList[i].pipeToCmd != 0) {
-				if (createdPipesToEachCmdVec.size() <= cmdList[i].pipeToCmd + i) {
-					createdPipesToEachCmdVec.resize(cmdList[i].pipeToCmd + i + 1, tmpPair);
-				}
-				if (createdPipesToEachCmdVec[cmdList[i].pipeToCmd + i][0] == 0) { /* note: create new pipe for THAT cmd */
-					pipe(&createdPipesToEachCmdVec[cmdList[i].pipeToCmd + i][0]);
-				}
-				assignedEntriesToEachCmdVec[i][1] = createdPipesToEachCmdVec[cmdList[i].pipeToCmd + i][1];
-			}
-		}
 		/* section: check whether need to attach user pipe to pipe in */
 		for (int i = 0; i < promptCmdCounter; i++) {
 			UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
@@ -516,8 +499,22 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, int shm
 			shmdt(userInfo);
 		}
 		vector<int> pidWaitList; /* note: some processes should be waited before printing % */
-		/* section: fork */
 		for (int i = 0; i < promptCmdCounter; i++) {
+			/* section: create new pipe or use existed pipe */
+			if (createdPipesToEachCmdVec[i][0] != 0) { /* note: exists a pipe connect to this command */
+				assignedEntriesToEachCmdVec[i][0] = createdPipesToEachCmdVec[i][0];
+			}
+			/* check whether need a pipe to send*/
+			if (cmdList[i].pipeToCmd != 0) {
+				if (createdPipesToEachCmdVec.size() <= cmdList[i].pipeToCmd + i) {
+					createdPipesToEachCmdVec.resize(cmdList[i].pipeToCmd + i + 1, tmpPair);
+				}
+				if (createdPipesToEachCmdVec[cmdList[i].pipeToCmd + i][0] == 0) { /* note: create new pipe for THAT cmd */
+					pipe(&createdPipesToEachCmdVec[cmdList[i].pipeToCmd + i][0]);
+				}
+				assignedEntriesToEachCmdVec[i][1] = createdPipesToEachCmdVec[cmdList[i].pipeToCmd + i][1];
+			}
+			/* section: fork */
 			pid_t cpid;
 			while((cpid = fork()) == -1) {}; /* note: busy waiting if process capacity exhausted */
 			if (cpid == 0) { /* note: child */

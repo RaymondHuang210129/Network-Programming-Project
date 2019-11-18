@@ -94,7 +94,9 @@ int npshell() {
 			createdPipesToEachCmdVec.resize(promptCmdCounter, tmpPair);
 		}
 		/* section: create new pipe or use existed pipe */
+		vector<int> pidWaitList;
 		for (int i = 0; i < promptCmdCounter; i++) {
+			/* section: create new pipe or use existed pipe */
 			/* check whether exists a pipe that should connect to rPipe */
 			if (createdPipesToEachCmdVec[i][0] != 0) { /* note: exists a pipe connect to this command */
 				assignedEntriesToEachCmdVec[i][0] = createdPipesToEachCmdVec[i][0];
@@ -109,10 +111,7 @@ int npshell() {
 				}
 				assignedEntriesToEachCmdVec[i][1] = createdPipesToEachCmdVec[cmdList[i].pipeToCmd + i][1];
 			}
-		}
-		vector<int> pidWaitList;
-		/* section: fork */
-		for (int i = 0; i < promptCmdCounter; i++) {
+			/* section: fork */
 			pid_t cpid;
 			while((cpid = fork()) == -1) {}; /* note: busy waiting if process capacity exhausted */
 			if (cpid == 0) { /* note: child */

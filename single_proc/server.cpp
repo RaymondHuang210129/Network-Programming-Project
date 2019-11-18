@@ -17,6 +17,7 @@
 #include <sys/stat.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <map>
 
 #define QLEN 30
 #define PIPETONULL 3000
@@ -37,6 +38,7 @@ struct UserInfo {
 	char userName[25] = "(no name)";
 	struct sockaddr_in endpointAddr;
 	int fd = -1;
+	map<string, string> env;
 };
 
 struct UserPipeInfo {
@@ -121,30 +123,11 @@ void detachFd() {
 	close(getdtablesize() - 1);
 }
 
-void backupEnv(char** envp, int fd, vector<vector<vector<string>>> &userEnv) {
-	cout << "backup" << endl;
-	for (char** env = envp; *env != 0; env++) {
-		vector<string> newEnv;
-		newEnv.push_back(strtok(*env, "="));
-		newEnv.push_back(strtok(NULL, "="));
-		cout << newEnv[0] << "==" << newEnv[1] << endl;
-		userEnv[fd].push_back(newEnv);
-	}
-}
-
-void restoreEnv(int fd, vector<vector<vector<string>>> &userEnv) {
+void attachEnv(vector<UserInfo> userInfo, int userIndex) {
 	clearenv();
-	for (int i = 0; i < userEnv[fd].size(); i++) {
-		setenv(userEnv[fd][i][0].c_str(), userEnv[fd][i][1].c_str(), 1);
+	for(map<string, string>::iterator iter = userInfo[userIndex].env.begin(); iter != userInfo[userIndex].env.end(); iter++) {
+		setenv(iter->first.c_str(), iter->second.c_str(), 1);
 	}
-}
-
-void printenv(int fd, vector<vector<vector<string>>> &userEnv) {
-	cout << "env start" << endl;
-	for (int i = 0; i < userEnv[fd].size(); i++) {
-		cout << userEnv[fd][i][0] << ":" << userEnv[fd][i][1] << endl;
-	}
-	cout << "env end" << endl;
 }
 
 int getUserIndex(vector<UserInfo> userInfo, int fd) {
@@ -187,6 +170,7 @@ void logout(vector<UserInfo> &userInfo, int fd, vector<UserPipeInfo> &createdUse
 	strcpy(userName, userInfo[userIndex].userName);
 	strcpy(userInfo[userIndex].userName, "(no name)");
 	userInfo[userIndex].fd = -1;
+	userInfo[userIndex].env.clear();
 	for (int i = 0; i < createdUserPipe.size(); i++) {
 		if (createdUserPipe[i].senderIndex == userIndex || createdUserPipe[i].receiverIndex == userIndex) {
 			close(createdUserPipe[i].fd[0]);
@@ -387,6 +371,8 @@ int main(int argc, char** argv, char** envp) {
 					userInfo[i].endpointAddr = clientAddr;
 					userInfo[i].fd = slaveSock;
 					newUserFd = slaveSock;
+					pair<string, string> newEnv("PATH", ".");
+					userInfo[i].env.insert(newEnv);
 					login(userInfo, i);
 					break;
 				}
@@ -398,6 +384,7 @@ int main(int argc, char** argv, char** envp) {
 		for (int fd = 0; fd < getdtablesize() - 3; fd++) {
 			if (fd != masterSock && FD_ISSET(fd, &readFdSet)) {
 				attachFd(fd);
+				attachEnv(userInfo, getUserIndex(userInfo, fd));
 				//restoreEnv(fd, userEnv);
 				//printenv(fd, userEnv);
 				string rawCmd;
@@ -466,7 +453,13 @@ int main(int argc, char** argv, char** envp) {
 				}
 				if (splitedCmd.size() > 0 && splitedCmd[0] == "setenv") {
 					setenv(splitedCmd[1].c_str(), splitedCmd[2].c_str(), 1);
+					if (userInfo[getUserIndex(userInfo, fd)].env.find(splitedCmd[1]) != userInfo[getUserIndex(userInfo, fd)].env.end()) {
+						userInfo[getUserIndex(userInfo, fd)].env[splitedCmd[1]] = splitedCmd[2];
+					} else {
+						userInfo[getUserIndex(userInfo, fd)].env.insert(pair<string, string>(splitedCmd[1], splitedCmd[2]));
+					}
 					cmdList.erase(cmdList.begin());
+					cout << "% " << flush;
 					continue;
 				}
 				if (splitedCmd.size() == 1 && splitedCmd[0] == "who") {
@@ -519,23 +512,26 @@ int main(int argc, char** argv, char** envp) {
 					createdPipesToEachCmdVec[fd].resize(promptCmdCounter, tmpPair);
 				}
 				/* section: create new pipe or use existed pipe */
-				for (int i = 0; i < promptCmdCounter; i++) {
-					/* check whether exists a pipe that should connect to rPipe */
-					if (createdPipesToEachCmdVec[fd][i][0] != 0) { /* note: exists a pipe connect to this command */
-						assignedEntriesToEachCmdVec[fd][i][0] = createdPipesToEachCmdVec[fd][i][0];
-					}
-					/* check whether need a pipe to send*/
-					if (cmdList[i].pipeToCmd != 0) {
-						if (createdPipesToEachCmdVec[fd].size() <= cmdList[i].pipeToCmd + i) {
-							createdPipesToEachCmdVec[fd].resize(cmdList[i].pipeToCmd + i + 1, tmpPair);
-						}
-						if (createdPipesToEachCmdVec[fd][cmdList[i].pipeToCmd + i][0] == 0) { /* note: create new pipe for THAT cmd */
-							pipe(&createdPipesToEachCmdVec[fd][cmdList[i].pipeToCmd + i][0]);
-						}
-						assignedEntriesToEachCmdVec[fd][i][1] = createdPipesToEachCmdVec[fd][cmdList[i].pipeToCmd + i][1];
-					}
-				}
-				/* section: check whether need to pipe in or pipe out */
+//				for (int i = 0; i < promptCmdCounter; i++) {
+//					/* check whether exists a pipe that should connect to rPipe */
+//					if (createdPipesToEachCmdVec[fd][i][0] != 0) { /* note: exists a pipe connect to this command */
+//						assignedEntriesToEachCmdVec[fd][i][0] = createdPipesToEachCmdVec[fd][i][0];
+//					}
+//					/* check whether need a pipe to send*/
+//					if (cmdList[i].pipeToCmd != 0) {
+//						if (createdPipesToEachCmdVec[fd].size() <= cmdList[i].pipeToCmd + i) {
+//							createdPipesToEachCmdVec[fd].resize(cmdList[i].pipeToCmd + i + 1, tmpPair);
+//						}
+//						if (createdPipesToEachCmdVec[fd][cmdList[i].pipeToCmd + i][0] == 0) { /* note: create new pipe for THAT cmd */
+//							if (pipe(&createdPipesToEachCmdVec[fd][cmdList[i].pipeToCmd + i][0]) == -1) {
+//								cout << errno << endl;
+//								exit(-1);
+//							}
+//						}
+//						assignedEntriesToEachCmdVec[fd][i][1] = createdPipesToEachCmdVec[fd][cmdList[i].pipeToCmd + i][1];
+//					}
+//				}
+				/* section: check whether need to pipe to/from another user */
 				for (int i = 0; i < promptCmdCounter; i++) {
 					if (cmdList[i].userPipeOut != 0) {
 						if (userInfo[cmdList[i].userPipeOut - 1].used == false) { /* user not exist: pipe to null */
@@ -589,10 +585,28 @@ int main(int argc, char** argv, char** envp) {
 						}
 					}
 				}
-
 				vector<int> pidWaitList; /* note: some processes should be waited before printing % */
 				for (int i = 0; i < promptCmdCounter; i++) {
 					pid_t cpid;
+					/* section: create new pipe or use existed pipe */
+					/* check whether exists a pipe that should connect to rPipe */
+					if (createdPipesToEachCmdVec[fd][i][0] != 0) { /* note: exists a pipe connect to this command */
+						assignedEntriesToEachCmdVec[fd][i][0] = createdPipesToEachCmdVec[fd][i][0];
+					}
+					/* check whether need a pipe to send*/
+					if (cmdList[i].pipeToCmd != 0) {
+						if (createdPipesToEachCmdVec[fd].size() <= cmdList[i].pipeToCmd + i) {
+							createdPipesToEachCmdVec[fd].resize(cmdList[i].pipeToCmd + i + 1, tmpPair);
+						}
+						if (createdPipesToEachCmdVec[fd][cmdList[i].pipeToCmd + i][0] == 0) { /* note: create new pipe for THAT cmd */
+							if (pipe(&createdPipesToEachCmdVec[fd][cmdList[i].pipeToCmd + i][0]) == -1) {
+								cout << errno << endl;
+								exit(-1);
+							}
+						}
+						assignedEntriesToEachCmdVec[fd][i][1] = createdPipesToEachCmdVec[fd][cmdList[i].pipeToCmd + i][1];
+					}
+					/* forking process */
 					while((cpid = fork()) == -1) {}; /* note: busy waiting if process capacity exhausted */
 					if (cpid == 0) { /* note: child */
 						if (assignedEntriesToEachCmdVec[fd][i][0]) { /* note: stdin redirect */
