@@ -150,13 +150,13 @@ void login(vector<UserInfo> &userInfo, int userIndex) {
 				cout << "*** User '" << userInfo[userIndex].userName 
 					 << "' entered from " 
 					 << inet_ntoa(userInfo[userIndex].endpointAddr.sin_addr) 
-					 << ":" << userInfo[userIndex].endpointAddr.sin_port << ". ***" << endl;
+					 << ":" << ntohs(userInfo[userIndex].endpointAddr.sin_port) << ". ***" << endl;
 				cout << "% " << flush;
 			} else {
 				cout << "*** User '" << userInfo[userIndex].userName 
 					 << "' entered from " 
 					 << inet_ntoa(userInfo[userIndex].endpointAddr.sin_addr) 
-					 << ":" << userInfo[userIndex].endpointAddr.sin_port << ". ***" << endl;
+					 << ":" << ntohs(userInfo[userIndex].endpointAddr.sin_port) << ". ***" << endl;
 			}
 			detachFd();
 		}
@@ -194,7 +194,7 @@ void who(vector<UserInfo> &userInfo, int fd) {
 		if (userInfo[i].used == true) {
 			cout << i + 1 << "\t" << userInfo[i].userName 
 				 << "\t" << inet_ntoa(userInfo[i].endpointAddr.sin_addr) 
-				 << ":" << userInfo[i].endpointAddr.sin_port;
+				 << ":" << ntohs(userInfo[i].endpointAddr.sin_port);
 			if (userInfo[i].fd == fd) {
 				cout << "\t<-me" << endl;
 			} else {
@@ -221,7 +221,7 @@ void rename(vector<UserInfo> &userInfo, int fd, string name) {
 			strcpy(userInfo[i].userName, name.c_str());
 			string address(inet_ntoa(userInfo[i].endpointAddr.sin_addr)); 
 			message = "*** User from " + address +
-			          ":" + to_string(userInfo[i].endpointAddr.sin_port) +
+			          ":" + to_string(ntohs(userInfo[i].endpointAddr.sin_port)) +
 			          " is named '" + userInfo[i].userName + "'. ***";
 			break;
 		}
@@ -371,7 +371,7 @@ int main(int argc, char** argv, char** envp) {
 					userInfo[i].endpointAddr = clientAddr;
 					userInfo[i].fd = slaveSock;
 					newUserFd = slaveSock;
-					pair<string, string> newEnv("PATH", ".");
+					pair<string, string> newEnv("PATH", "bin:.");
 					userInfo[i].env.insert(newEnv);
 					login(userInfo, i);
 					break;
@@ -533,34 +533,6 @@ int main(int argc, char** argv, char** envp) {
 //				}
 				/* section: check whether need to pipe to/from another user */
 				for (int i = 0; i < promptCmdCounter; i++) {
-					if (cmdList[i].userPipeOut != 0) {
-						if (userInfo[cmdList[i].userPipeOut - 1].used == false) { /* user not exist: pipe to null */
-							cout << "*** Error: user #" << cmdList[i].userPipeOut << " does not exist yet. ***" << endl;
-							cmdList[i].userPipeOut = PIPETONULL;
-						} else {
-							bool isExist = false;
-							int userIndex = getUserIndex(userInfo, fd);
-							for (int j = 0; j < createdUserPipe.size(); j++) {
-								if (createdUserPipe[j].senderIndex == userIndex && createdUserPipe[j].receiverIndex == (cmdList[i].userPipeOut - 1)) {
-									cout << "*** Error: the pipe #" << userIndex + 1
-									     << "->#" << cmdList[i].userPipeOut << " already exist. ***" << endl;
-									cmdList[i].userPipeOut = PIPETONULL;
-									isExist = true;
-									break;
-								}
-							}
-							if (isExist == false) {
-								UserPipeInfo newPipe;
-								newPipe.senderIndex = userIndex;
-								newPipe.receiverIndex = cmdList[i].userPipeOut - 1;
-								pipe(newPipe.fd);
-								createdUserPipe.push_back(newPipe);
-								detachFd();
-								pipeOut(userInfo, newPipe, splitedCmd);
-								attachFd(fd);
-							}
-						}
-					}
 					if (cmdList[i].userPipeIn != 0) {
 						if (userInfo[cmdList[i].userPipeIn - 1].used == false) { /* user not exist: pipe to null */
 							cout << "*** Error: user #" << cmdList[i].userPipeIn << " does not exist yet. ***" << endl;
@@ -581,6 +553,34 @@ int main(int argc, char** argv, char** envp) {
 								cout << "*** Error: the pipe #" << cmdList[i].userPipeIn 
 								     << "->#" << userIndex + 1 << " does not exist yet. ***" << endl;
 								cmdList[i].userPipeIn = PIPETONULL;
+							}
+						}
+					}
+					if (cmdList[i].userPipeOut != 0) {
+						if (userInfo[cmdList[i].userPipeOut - 1].used == false) { /* user not exist: pipe to null */
+							cout << "*** Error: user #" << cmdList[i].userPipeOut << " does not exist yet. ***" << endl;
+							cmdList[i].userPipeOut = PIPETONULL;
+						} else {
+							bool isExist = false;
+							int userIndex = getUserIndex(userInfo, fd);
+							for (int j = 0; j < createdUserPipe.size(); j++) {
+								if (createdUserPipe[j].senderIndex == userIndex && createdUserPipe[j].receiverIndex == (cmdList[i].userPipeOut - 1)) {
+									cout << "*** Error: the pipe #" << userIndex + 1
+									     << "->#" << cmdList[i].userPipeOut << " already exists. ***" << endl;
+									cmdList[i].userPipeOut = PIPETONULL;
+									isExist = true;
+									break;
+								}
+							}
+							if (isExist == false) {
+								UserPipeInfo newPipe;
+								newPipe.senderIndex = userIndex;
+								newPipe.receiverIndex = cmdList[i].userPipeOut - 1;
+								pipe(newPipe.fd);
+								createdUserPipe.push_back(newPipe);
+								detachFd();
+								pipeOut(userInfo, newPipe, splitedCmd);
+								attachFd(fd);
 							}
 						}
 					}

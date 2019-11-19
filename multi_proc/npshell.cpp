@@ -52,7 +52,7 @@ void SIGUSR1HandlerShell(int sigNum) {
 		cout << "*** User '" << userInfo[sigArg->senderIndex].userName 
 			 << "' entered from " 
 			 << inet_ntoa(userInfo[sigArg->senderIndex].endpointAddr.sin_addr) 
-			 << ":" << userInfo[sigArg->senderIndex].endpointAddr.sin_port << ". ***" << endl;
+			 << ":" << ntohs(userInfo[sigArg->senderIndex].endpointAddr.sin_port) << ". ***" << endl;
 		shmdt(userInfo);
 	} else if (sigArg->signalMode == LOGOUT) {
 		/* note: show notification */
@@ -76,7 +76,7 @@ void SIGUSR1HandlerShell(int sigNum) {
 		UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0); 
 		cout << "*** User from " 
 			 << inet_ntoa(userInfo[sigArg->senderIndex].endpointAddr.sin_addr) 
-			 << ":" << userInfo[sigArg->senderIndex].endpointAddr.sin_port 
+			 << ":" << ntohs(userInfo[sigArg->senderIndex].endpointAddr.sin_port) 
 			 << " is named '" << userInfo[sigArg->senderIndex].userName 
 			 << "'. ***" << endl;
 		shmdt(userInfo);
@@ -89,7 +89,7 @@ void SIGUSR1HandlerShell(int sigNum) {
 	} else if (sigArg->signalMode == TELL) {
 		UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
 		cout << "*** " << userInfo[sigArg->senderIndex].userName 
-			 << " told you *** : " << sigArg->message << endl;
+			 << " told you ***: " << sigArg->message << endl;
 		shmdt(userInfo);
 	} else if (sigArg->signalMode == PIPESEND) {
 		UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
@@ -115,6 +115,7 @@ void SIGUSR1HandlerShell(int sigNum) {
 			 << ") by '" << sigArg->message << "' ***" << endl;
 		shmdt(userInfo);
 	}
+	cout.flush();
 	shmdt(sigArg);
 	p_sem(statglb_semSigArgID, 1);
 }
@@ -169,7 +170,7 @@ void who() {
 		if (userInfo[i].used == true) {
 			cout << i + 1 << "\t" << userInfo[i].userName 
 				 << "\t" << inet_ntoa(userInfo[i].endpointAddr.sin_addr) 
-				 << ":" << userInfo[i].endpointAddr.sin_port;
+				 << ":" << ntohs(userInfo[i].endpointAddr.sin_port);
 			if (userInfo[i].processID == getpid()) {
 				cout << "\t<-me" << endl;
 			} else {
@@ -451,6 +452,10 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, int shm
 			continue;
 		}
 		if (splitedCmd.size() == 1 && splitedCmd[0] == "exit") {
+			/* comment: Fuck our capricious TA, it is useless to notify himself when one exit */
+			UserInfo* userInfo = (UserInfo*)shmat(statglb_shmInfoID, NULL, 0);
+			cout << "*** User '" << userInfo[statglb_userIndex].userName << "' left. ***" << endl;
+			shmdt(userInfo);
 			exit(0);
 		}
 		vector<int> tmpPair(2, 0);
@@ -472,6 +477,8 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, int shm
 						cout << "*** Error: the pipe #" << cmdList[i].userPipeIn 
 							 << "->#" << statglb_userIndex + 1 << " does not exist yet. ***" << endl;
 						cmdList[i].userPipeIn = PIPETONULL;
+					} else {
+						pipeIn(splitedCmd, cmdList[i].userPipeIn - 1);
 					}
 				}
 			}
@@ -489,10 +496,12 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, int shm
 					int result = mkfifo(userPipeName.c_str(), S_IRWXU|S_IRWXG|S_IRWXO);
 					if (result == -1 && errno == EEXIST) { /* user pipe already exist: pipe to null */
 						cout << "*** Error: the pipe #" << statglb_userIndex + 1 
-							 << "->#" << cmdList[i].userPipeOut << " already exist. ***" << endl;
+							 << "->#" << cmdList[i].userPipeOut << " already exists. ***" << endl;
 						cmdList[i].userPipeOut = PIPETONULL;
 					} else if (result == -1 && errno != EEXIST) {
 						cout << "mkfifo error " << errno << endl;
+					} else {
+						pipeOut(splitedCmd, cmdList[i].userPipeOut - 1);
 					}
 				}
 			}
@@ -537,7 +546,7 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, int shm
 					dup2(nullFd, STDIN_FILENO);
 					close(nullFd);
 				} else if (cmdList[i].userPipeIn > 0) { /* note: valid attempt to attach user pipe */
-					pipeIn(splitedCmd, cmdList[i].userPipeIn - 1);
+					//pipeIn(splitedCmd, cmdList[i].userPipeIn - 1);
 					close(STDIN_FILENO);
 					dup2(statglb_pipeInFd[cmdList[i].userPipeIn - 1], STDIN_FILENO);
 					close(statglb_pipeInFd[cmdList[i].userPipeIn - 1]);
@@ -555,7 +564,7 @@ int npshell(pid_t ppid, int shmInfoID, int shmSigArgID, int semSigArgID, int shm
 					dup2(nullFd, STDOUT_FILENO);
 					close(nullFd);
 				} else if (cmdList[i].userPipeOut > 0) { /* note: valid attempt to attach user pipe */
-					pipeOut(splitedCmd, cmdList[i].userPipeOut - 1);
+					//pipeOut(splitedCmd, cmdList[i].userPipeOut - 1);
 					string userPipeName = "./user_pipe/" + to_string(statglb_userIndex) + "to" + to_string(cmdList[i].userPipeOut - 1);
 					int pipeOutFd = open(userPipeName.c_str(), O_WRONLY);
 					close(STDOUT_FILENO);
