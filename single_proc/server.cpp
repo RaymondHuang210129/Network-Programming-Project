@@ -488,6 +488,8 @@ int main(int argc, char** argv, char** envp) {
 				}
 				if (splitedCmd.size() == 1 && splitedCmd[0] == "exit") {
 					/* section: close all personal pipes */
+					int userIndex = getUserIndex(userInfo, fd);
+					cout << "*** User '" << userInfo[userIndex].userName << "' left. ***" << endl;
 					for(int i = 0; i < createdPipesToEachCmdVec[fd].size(); i++) {
 						if (createdPipesToEachCmdVec[fd][i][0] != 0) {
 							close(createdPipesToEachCmdVec[fd][i][0]);
