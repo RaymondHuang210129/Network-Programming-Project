@@ -98,13 +98,6 @@ void printHTMLAdd(string recvData, int id, bool isPrompt) {
 		}
 	}
 	cout << "<script>document.getElementById('s" << id << "').innerHTML += '" << escapedData << "';</script>" << flush;
-	/*
-	if (isPrompt) {
-		cout << "<script>document.getElementById('s" << id << "').innerHTML += '" << recvData << "';</script>" << flush;
-	} else {
-		cout << "<script>document.getElementById('s" << id << "').innerHTML += '<b>" << recvData << "</b>';</script>" << flush;
-	}
-	*/
 }
 
 class ShellClient : public enable_shared_from_this<ShellClient> {
@@ -131,8 +124,6 @@ public:
 		_file.open("./test_case/" + _filename, fstream::in);
 	}
 	void start() {
-		//cout << "start" << endl; 
-		//cout << _host << ":" << _port << ":" << _filename << endl;
 		do_resolve();
 	}
 private:
@@ -215,13 +206,11 @@ int main() {
 	printHTMLStructure(queryMap);
 	/* section: connect to servers */
 	for (auto iter = queryMap.begin(); iter != queryMap.end(); iter++) {
-		//cout << iter->first << "->" << iter->second << endl;
 	}
 	try {
 		int id = 0;
 		for (int i = 0; i < 5; i++) {
 			if (queryMap["h" + to_string(i)] != "") {
-				//cout << queryMap["h" + to_string(i)] << ":" << queryMap["p" + to_string(i)] << ":" << queryMap["f" + to_string(i)] << endl;
 				make_shared<ShellClient>(queryMap["h" + to_string(i)], queryMap["p" + to_string(i)], queryMap["f" + to_string(i)], id)->start();
 				id++;
 			}
