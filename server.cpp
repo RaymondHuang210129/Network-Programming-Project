@@ -47,31 +47,29 @@ private:
 					if (cpid == 0) {
 						for (auto iter = envmap.begin(); iter != envmap.end(); iter++) {
 							setenv(iter->first.c_str(), iter->second.c_str(), 1);
-							auto native = _socket.native_handle();
-							close(STDIN_FILENO);
-							close(STDOUT_FILENO);
-							//close(STDERR_FILENO);
-							dup2(native, STDIN_FILENO);
-							dup2(native, STDOUT_FILENO);
-							//dup2(native, STDERR_FILENO);
-							cout << "HTTP/1.1 200 OK\r\n";
-							//_socket.close();
-							//close(STDIN_FILENO);
-							//close(STDOUT_FILENO);
-							//return;
-							char* execVect[2];
-							string cgiPath = "." + envmap["REQUEST_URI"];
-							execVect[0] = strdup(cgiPath.c_str());
-							execVect[1] = NULL;
-							execvp(execVect[0], execVect);
-							if (errno == 2) {
-								cerr << "Unknown URI: [" << execVect[0] << "]." << endl;
-							}
-							else {
-								cerr << "exec error: " << errno << endl;
-							}
-							//close(_socket.native_handle());
-							//_socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);
+						}
+						auto native = _socket.native_handle();
+						close(STDIN_FILENO);
+						close(STDOUT_FILENO);
+						//close(STDERR_FILENO);
+						dup2(native, STDIN_FILENO);
+						dup2(native, STDOUT_FILENO);
+						//dup2(native, STDERR_FILENO);
+						cout << "HTTP/1.1 200 OK\r\n";
+						//_socket.close();
+						//close(STDIN_FILENO);
+						//close(STDOUT_FILENO);
+						//return;
+						char* execVect[2];
+						string cgiPath = "." + envmap["REQUEST_URI"];
+						execVect[0] = strdup(cgiPath.c_str());
+						execVect[1] = NULL;
+						execvp(execVect[0], execVect);
+						if (errno == 2) {
+							cerr << "Unknown URI: [" << execVect[0] << "]." << endl;
+						}
+						else {
+							cerr << "exec error: " << errno << endl;
 						}
 					} else {
 						cout << "closing parent socket" << endl;
