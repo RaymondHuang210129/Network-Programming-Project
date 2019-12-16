@@ -7,7 +7,6 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/regex.hpp>
 #include <boost/regex.hpp>
-//#include <boost/algorithm/string/split.hpp>
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
@@ -23,11 +22,7 @@ class HTTPSession : public enable_shared_from_this<HTTPSession> {
 private:
 	enum { max_length = 1024 };
 	ip::tcp::socket _socket;
-	//strand<io_context::executer_type> _strand;
 	array<char, max_length> _data;
-	//string const& _doc_root;
-	//http::request<http::string_body> _request;
-	//shared_ptr<void> _result;
 
 public:
 	HTTPSession(ip::tcp::socket socket) : _socket(move(socket)) {}
@@ -51,15 +46,9 @@ private:
 						auto native = _socket.native_handle();
 						close(STDIN_FILENO);
 						close(STDOUT_FILENO);
-						//close(STDERR_FILENO);
 						dup2(native, STDIN_FILENO);
 						dup2(native, STDOUT_FILENO);
-						//dup2(native, STDERR_FILENO);
 						cout << "HTTP/1.1 200 OK\r\n";
-						//_socket.close();
-						//close(STDIN_FILENO);
-						//close(STDOUT_FILENO);
-						//return;
 						char* execVect[2];
 						string cgiPath = "." + envmap["REQUEST_URI"];
 						execVect[0] = strdup(cgiPath.c_str());
@@ -74,7 +63,6 @@ private:
 					} else {
 						cout << "closing parent socket" << endl;
 						_socket.close();
-						//_socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);
 					}
 				}
 			}
@@ -86,9 +74,6 @@ private:
 		vector<string> splitedHeader;
 		split_regex(splitedHeader, data, boost::regex("(\r\n)+"));
 		cout << splitedHeader.size() << endl;
-		//for (int i = 0; i < splitedHeader.size(); i++) {
-		//	cout << i << ":" << splitedHeader[i] << endl;
-		//}
 		map<string, string> envmap;
 		vector<string> splitedHeaderL1;
 		boost::split(splitedHeaderL1, splitedHeader[0], boost::is_any_of(" "), boost::token_compress_on);
