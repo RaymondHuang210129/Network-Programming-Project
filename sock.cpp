@@ -13,6 +13,7 @@
 #include <fstream>
 #include <memory>
 #include <utility>
+#include <unistd.h>
 
 #define CD_REQUEST 1
 #define CD_REPLY_GRANTED 90
@@ -47,20 +48,22 @@ private:
 			[this, self](boost::system::error_code ec, size_t length) {
 				if (!ec && length != 0) {
 					cout << "packet send from " << _server_socket.remote_endpoint().address().to_string() << " to " << _client_socket.remote_endpoint().address().to_string() << endl;
-					_client_socket.async_send(
-						buffer(_forward_data, length), 
-						[this, self](const boost::system::error_code& ec, size_t bytes_transferred) {
-							if (!ec && bytes_transferred != 0) {
-								_forward_data.fill('\0');
-								forward();
-							} else {
-								cout << "error: " << ec.message() << endl;
-								_client_socket.close();
-							}
-						});
+					_client_socket.send(buffer(_forward_data, length));
+					forward();
+//					_client_socket.async_send(
+//						buffer(_forward_data, length), 
+//						[this, self](const boost::system::error_code& ec, size_t bytes_transferred) {
+//							if (!ec && bytes_transferred != 0) {
+//								_forward_data.fill('\0');
+//								forward();
+//							} else {
+//								cout << "error: " << ec.message() << endl;
+//								_client_socket.close();
+//							}
+//						});
 				} else {
 					cerr << "error: " << "forward" << endl;
-					//_server_socket.close();
+					_client_socket.close();
 				}
 			});
 	}
@@ -71,21 +74,23 @@ private:
 			buffer(_backward_data, max_length),
 			[this, self](boost::system::error_code ec, size_t length) {
 				if (!ec && length != 0) {
-					cout << "packet send from " << _client_socket.remote_endpoint().address().to_string() << " to " << _server_socket.remote_endpoint().address().to_string() << endl;
-					_server_socket.async_send(
-						buffer(_backward_data, length),
-						[this, self](const boost::system::error_code& ec, size_t bytes_transferred) {
-							if (!ec && bytes_transferred != 0) {
-								_backward_data.fill('\0');
-								backward();
-							} else {
-								cout << "error: " << ec.message() << endl;
-								_server_socket.close();
-							}
-						});
+					_server_socket.send(buffer(_backward_data, length));
+					backward();
+//					cout << "packet send from " << _client_socket.remote_endpoint().address().to_string() << " to " << _server_socket.remote_endpoint().address().to_string() << endl;
+//					_server_socket.async_send(
+//						buffer(_backward_data, length),
+//						[this, self](const boost::system::error_code& ec, size_t bytes_transferred) {
+//							if (!ec && bytes_transferred != 0) {
+//								_backward_data.fill('\0');
+//								backward();
+//							} else {
+//								cout << "error: " << ec.message() << endl;
+//								_server_socket.close();
+//							}
+//						});
 				} else {
 					cerr << "error: " << "backward" << endl;
-					//_client_socket.close();
+					_server_socket.close();
 				}
 			});
 	}
@@ -291,6 +296,7 @@ int main(int argc, char* const argv[]) {
 		global_io_service.run();
 	} catch (exception& e) {
 		cerr << "Exception: " << e.what() << endl;
+		global_io_service.run();
 	}
 	return 0;
 }
