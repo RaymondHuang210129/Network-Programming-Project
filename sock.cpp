@@ -91,13 +91,19 @@ private:
 	}
 };
 
+struct rule {
+	unsigned int addr = 0;
+	unsigned int mask = 0;
+	rule(unsigned int _addr, unsigned int _mask) : addr(_addr), mask(_mask) {};
+};
+
 class SockSession : public enable_shared_from_this<SockSession> {
 private:
 	enum { max_length = 65536 };
 	ip::tcp::socket _socket;
 	array<unsigned char, max_length> _data;
-	vector<string> bind_rules;
-	vector<string> connect_rules;
+	vector<rule> bind_rules;
+	vector<rule> connect_rules;
 
 
 public:
@@ -105,10 +111,23 @@ public:
 		fstream file("./socks.conf", fstream::in);
 		string line;
 		while(getline(file, line)) {
+			vector<string> splited_addr;
+			string subline = line.substr(9);
+			boost::split(splited_addr, subline, boost::is_any_of("."), boost::token_compress_on);
+			unsigned int addr = 0;
+			unsigned int mask = 0;
+			for (int i = 0; i < 4; i++) {
+				if (splited_addr[i] == "*") {
+					break;
+				} else {
+					addr += (stoi(splited_addr[i]) << (8 * (3 - i)));
+					mask += (255 << (8 * (3 - i)));
+				}
+			}
 			if (line[7] == 'c') {
-				connect_rules.push_back(strtok(const_cast<char*>(line.substr(9).c_str()), "*"));
+				connect_rules.push_back(rule(addr, mask));
 			} else if (line[7] == 'b') {
-				bind_rules.push_back(strtok(const_cast<char*>(line.substr(9).c_str()), "*"));
+				bind_rules.push_back(rule(addr, mask));
 			}
 		}
 		file.close();
@@ -195,19 +214,34 @@ private:
 	}
 	bool is_permit(string address, int mode) {
 		if (mode == MODE_CONNECT) {
+			vector<string> splited_addr;
+			boost::split(splited_addr, address, boost::is_any_of("."), boost::token_compress_on);
+			unsigned int test_addr = 0;
+			for (int i = 0; i < 4; i++) {
+				test_addr += ((unsigned int)stoi(splited_addr[i]) << (8 * (3 - i)));
+			}
 			for (int i = 0; i < connect_rules.size(); i++) {
-				if (address.substr(0, connect_rules[i].length()) == connect_rules[i]) {
+				if ((test_addr & connect_rules[i].mask) == (connect_rules[i].addr & connect_rules[i].mask)) {
 					return true;
 				}
 			}
-		} else {
+			return false;
+		} else if (mode == MODE_BIND){
+			vector<string> splited_addr;
+			boost::split(splited_addr, address, boost::is_any_of("."), boost::token_compress_on);
+			unsigned int test_addr = 0;
+			for (int i = 0; i < 4; i++) {
+				test_addr += ((unsigned int)stoi(splited_addr[i]) << (8 * (3 - i)));
+			}
 			for (int i = 0; i < bind_rules.size(); i++) {
-				if (address.substr(0, bind_rules[i].length()) == bind_rules[i]) {
+				if ((test_addr & bind_rules[i].mask) == (bind_rules[i].addr & bind_rules[i].mask)) {
 					return true;
 				}
 			}
+			return false;
+		} else {
+			return false;
 		}
-		return false;
 	}
 };
 
