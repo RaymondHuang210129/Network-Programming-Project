@@ -37,29 +37,22 @@ public:
 	SockTransmission(ip::tcp::socket& send_socket, ip::tcp::socket& receive_socket) : _server_socket(receive_socket),
 	                                                                                _client_socket(send_socket) {}
 	void start() {
-		//cout << "start data transfer" << endl;
 		forward(_client_socket, _server_socket);
 	}
 private:
 	void forward(ip::tcp::socket& read_socket, ip::tcp::socket& write_socket) {
 		auto self(shared_from_this());
 		try {
-			//cout << "wait for reading" << endl;
 			read_socket.async_read_some(
 				buffer(_data, max_length),
 				[this, self, &read_socket, &write_socket](boost::system::error_code ec, size_t length) {
 					if (!ec) {
-						//cout << "packet send from " << read_socket.remote_endpoint().address().to_string() << " to " << write_socket.remote_endpoint().address().to_string() << endl;
 						size_t result = write(write_socket, buffer(_data, length));
 						if (result != length) {
 							cout << result << " " << length << endl;
 						}
-						//_data.fill('\0');
-						//write(write_socket, buffer(_data, length));
 						forward(read_socket, write_socket);
 					} else {
-						//cout << "end" << endl;
-						//cerr << "error: async_receive" << ec.message() << endl;
 						read_socket.cancel();
 						write_socket.cancel();
 						exit(1);
@@ -134,11 +127,9 @@ void reply(ip::tcp::socket& client_socket, int command, unsigned short port) {
 
 		unsigned char reply[8] = {0, CD_REPLY_GRANTED, (unsigned char)(port >> (unsigned short)8), (unsigned char)(port & (unsigned short)255), 0, 0, 0, 0};
 		write(client_socket, buffer((void*)reply, (size_t)8));
-		//client_socket.send(buffer((void*)reply, (size_t)8));
 	} else {
 		unsigned char reply[8] = {0, CD_REPLY_REJECTED, 0, 0, 0, 0, 0, 0};
 		write(client_socket, buffer((void*)reply, (size_t)8));
-		//client_socket.send(buffer((void*)reply, (size_t)8));
 	}
 }
 
@@ -169,7 +160,6 @@ void socket_session(ip::tcp::socket& client_socket) {
 				make_shared<SockTransmission>(client_socket, server_socket)->start();
 				make_shared<SockTransmission>(server_socket, client_socket)->start();
 				global_io_service.run();
-				//cout << "socket should close" << endl;
 			} else {
 				cout << "<Reply>: " << "Reject" << endl;
 				reply(client_socket, CD_REPLY_REJECTED, 0);
@@ -189,7 +179,6 @@ void socket_session(ip::tcp::socket& client_socket) {
 				make_shared<SockTransmission>(client_socket, server_socket)->start();
 				make_shared<SockTransmission>(server_socket, client_socket)->start();
 				global_io_service.run();
-				//cout << "nonono" << endl;
 			} else {
 				cout << "<Reply>: " << "Reject" << endl;
 				reply(client_socket, CD_REPLY_REJECTED, 0);
@@ -197,8 +186,6 @@ void socket_session(ip::tcp::socket& client_socket) {
 			}
 		}
 	} else {
-		//cout << "a socket is connected and closed immediately." << endl;
-		//cout << ec.message() << endl;
 		exit(0);
 	}
 }
@@ -214,7 +201,6 @@ int main(int argc, char* const argv[]) {
 	ip::tcp::acceptor client_acceptor(global_io_service, client_endpoint);
 	client_acceptor.set_option(ip::tcp::acceptor::reuse_address(true));
 	while(1) {
-		//cout << "log: wait for new request" << endl;
 		ip::tcp::socket client_socket(global_io_service);
 		client_acceptor.accept(client_socket);
 		global_io_service.notify_fork(io_service::fork_prepare);
@@ -228,7 +214,6 @@ int main(int argc, char* const argv[]) {
 				global_io_service.notify_fork(io_service::fork_parent);
 				client_socket.close();
 				break;
-				//cout << "forked" << endl;
 			} else if (pid == -1){
 				cout << "unable to fork" << endl;
 				continue;
