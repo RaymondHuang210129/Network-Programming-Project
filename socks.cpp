@@ -133,6 +133,33 @@ void reply(ip::tcp::socket& client_socket, int command, unsigned short port) {
 	}
 }
 
+void resolve_sock4a(unsigned char* data, int size) {
+	if (data[4] == 0 && data[5] == 0 && data[6] == 0) {
+		int domain_ptr = 8;
+		string domain = "";
+		for (domain_ptr; data[domain_ptr] != 0; domain_ptr++) {};
+		domain_ptr++;
+		/* note: start parsing domain */
+		for (domain_ptr; data[domain_ptr] != 0; domain_ptr++) {
+			domain.append(1, (char)data[domain_ptr]);
+		}
+		ip::tcp::resolver resolver(global_io_service);
+		ip::tcp::resolver::query query(domain, to_string((unsigned int)data[2] * 256 + (unsigned int)data[3]));
+		ip::tcp::resolver::iterator iter = resolver.resolve(query);
+		ip::tcp::endpoint endpoint = *iter;
+		string addr_str = endpoint.address().to_string();
+		vector<string> splited_addr;
+		boost::split(splited_addr, addr_str, boost::is_any_of("."), boost::token_compress_on);
+		data[4] = (unsigned char)stoi(splited_addr[0]);
+		data[5] = (unsigned char)stoi(splited_addr[1]);
+		data[6] = (unsigned char)stoi(splited_addr[2]);
+		data[7] = (unsigned char)stoi(splited_addr[3]);
+		return;
+	} else {
+		return;
+	}
+}
+
 void socket_session(ip::tcp::socket& client_socket) {
 	vector<rule> bind_rules;
 	vector<rule> connect_rules;
@@ -143,6 +170,7 @@ void socket_session(ip::tcp::socket& client_socket) {
 	client_socket.read_some(buffer(_data, max_length), ec);
 	if (!ec) {
 		unsigned char* result = _data.data();
+		resolve_sock4a(result, _data.size());
 		unsigned short dstport = result[2] * 256 + result[3];
 		string dstaddr("" + to_string((unsigned int)result[4]) + "." + to_string((unsigned int)result[5]) + "." + to_string((unsigned int)result[6]) + "." + to_string((unsigned int)result[7]));
 		cout << "<S_IP>: " << client_socket.remote_endpoint().address().to_string() << endl;
@@ -151,7 +179,7 @@ void socket_session(ip::tcp::socket& client_socket) {
 		cout << "<D_PORT>: " << dstport << endl;
 		if (result[1] == MODE_CONNECT) {
 			cout << "<Command>: " << "CONNECT" << endl;
-			if (is_permit(client_socket.remote_endpoint().address().to_string(), connect_rules)) {
+			if (is_permit(dstaddr, connect_rules)) {
 				cout << "<Reply>: " << "Accept" << endl;
 				reply(client_socket, CD_REPLY_GRANTED, 0);
 				ip::tcp::endpoint server_endpoint(ip::address::from_string(dstaddr), dstport);
@@ -167,7 +195,7 @@ void socket_session(ip::tcp::socket& client_socket) {
 			}
 		} else {
 			cout << "<Command>: " << "BIND" << endl;
-			if (is_permit(client_socket.remote_endpoint().address().to_string(), bind_rules)) {
+			if (is_permit(dstaddr, bind_rules)) {
 				cout << "<Reply>: " << "Accept" << endl;
 				ip::tcp::endpoint bind_endpoint(ip::tcp::v4(), 0);
 				ip::tcp::acceptor bind_acceptor(global_io_service, bind_endpoint);
